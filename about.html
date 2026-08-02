@@ -135,11 +135,13 @@
     }
 
     .contact-title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-family: 'Zen Maru Gothic', sans-serif;
-      font-style: italic;
+      font-weight: 700;
       color: #222;
       margin-bottom: 15px;
+      letter-spacing: 0.05em;
+      font-style: normal;
     }
 
     .contact-divider {
@@ -155,60 +157,27 @@
       background: #ffffff;
       padding: 40px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      text-align: left;
+      text-align: center;
     }
 
-    .contact-info {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .contact-info h3 {
-      font-size: 1.2rem;
+    .contact-box p {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 25px;
       font-family: 'Zen Maru Gothic', sans-serif;
-      margin-bottom: 10px;
+      line-height: 1.8;
     }
 
-    .contact-info p {
-      font-size: 0.85rem;
-      color: #555;
-    }
-
-    .contact-form {
-      flex: 1.5;
-      min-width: 250px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 10px;
-      background-color: #dcdcdc;
-      border: none;
-      font-size: 0.85rem;
-      color: #333;
-    }
-
-    .contact-form textarea {
-      height: 120px;
-      resize: vertical;
-    }
-
-    .send-btn {
-      align-self: flex-end;
+    .fanbox-btn {
+      display: inline-block;
       background: #000000;
       color: #ffffff;
-      border: none;
-      padding: 6px 20px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      font-weight: bold;
+      text-decoration: none;
+      padding: 12px 30px;
+      font-size: 0.95rem;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+      border-radius: 4px;
     }
 
     /* フッダーのスタイル */
@@ -236,7 +205,7 @@
         width: 220px;
       }
       .contact-box {
-        padding: 20px;
+        padding: 25px 20px;
       }
     }
   </style>
@@ -261,7 +230,7 @@
     <h1 class="about-title">About</h1>
     
     <div class="profile-img-wrap">
-      <img src="https://raw.githubusercontent.com/Yubico-Tsumugine/image-storage/35baebef7a98055d4b6ace4aeb4c03c61664be21/icon.png" alt="紡音ゆび子">
+      <img src="https://raw.githubusercontent.com/Yubico-Tsumugine/image-storage/35baebef7a98055d4b6ace44aeb4c03c61664be21/icon.png" alt="紡音ゆび子">
     </div>
 
     <div class="profile-name">紡音ゆび子 / Tsumugine Yubico</div>
@@ -278,17 +247,8 @@
     <hr class="contact-divider">
 
     <div class="contact-box">
-      <div class="contact-info">
-        <h3>Hand Drawings</h3>
-        <p>yubico2627@gmail.com</p>
-      </div>
-      <div class="contact-form">
-        <input type="text" placeholder="お名前 *">
-        <input type="email" placeholder="メールアドレス *">
-        <input type="text" placeholder="件名">
-        <textarea placeholder="メッセージ"></textarea>
-        <button class="send-btn">Send</button>
-      </div>
+      <p>Contact</p>
+      <a href="https://www.fanbox.cc/" target="_blank" rel="noopener noreferrer" class="fanbox-btn">pixiv FANBOX DM</a>
     </div>
   </section>
 </main>
