@@ -91,8 +91,8 @@
     }
 
     .profile-img-wrap {
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       margin: 0 auto 25px auto;
       border-radius: 50%;
       overflow: hidden;
@@ -130,34 +130,30 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      padding: 60px 20px;
+      padding: 60px 20px 80px 20px;
       box-sizing: border-box;
+      text-align: left;
+    }
+
+    .contact-inner {
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .contact-title {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-family: 'Zen Maru Gothic', sans-serif;
       font-weight: 700;
       color: #222;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
+      margin-bottom: 40px;
+      letter-spacing: 0.1em;
       font-style: normal;
     }
 
-    .contact-divider {
-      border: none;
-      border-top: 2px dotted #666;
-      max-width: 800px;
-      margin: 0 auto 40px auto;
-    }
-
     .contact-box {
-      max-width: 700px;
-      margin: 0 auto;
       background: #ffffff;
       padding: 40px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      text-align: center;
     }
 
     .contact-box p {
@@ -166,6 +162,7 @@
       margin-bottom: 25px;
       font-family: 'Zen Maru Gothic', sans-serif;
       line-height: 1.8;
+      text-align: justify;
     }
 
     .fanbox-btn {
@@ -189,6 +186,7 @@
       font-size: 0.8rem;
       line-height: 1.8;
       border-top: 1px solid #222222;
+      text-align: center;
     }
 
     .footer-credit {
@@ -230,7 +228,7 @@
     <h1 class="about-title">About</h1>
     
     <div class="profile-img-wrap">
-      <img src="https://raw.githubusercontent.com/Yubico-Tsumugine/image-storage/35baebef7a98055d4b6ace44aeb4c03c61664be21/icon.png" alt="紡音ゆび子">
+      <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/icon.png?raw=true" alt="紡音ゆび子">
     </div>
 
     <div class="profile-name">紡音ゆび子 / Tsumugine Yubico</div>
@@ -243,12 +241,12 @@
   </div>
 
   <section class="contact-section">
-    <h2 class="contact-title">Contact</h2>
-    <hr class="contact-divider">
-
-    <div class="contact-box">
-      <p>Contact</p>
-      <a href="https://www.fanbox.cc/" target="_blank" rel="noopener noreferrer" class="fanbox-btn">pixiv FANBOX DM</a>
+    <div class="contact-inner">
+      <h2 class="contact-title">Contact</h2>
+      <div class="contact-box">
+        <p>ご用件やメッセージは、pixiv FANBOXのメッセージ（DM）から気軽に送ってくれよな。</p>
+        <a href="https://www.fanbox.cc/" target="_blank" rel="noopener noreferrer" class="fanbox-btn">pixiv FANBOX DMへ</a>
+      </div>
     </div>
   </section>
 </main>
