@@ -75,27 +75,140 @@
       letter-spacing: 0.05em;
     }
 
-    /* メインコンテンツ（About用）のスタイル */
+    /* メインコンテンツ（プロフィール部分） */
     .about-main {
+      width: 100%;
+      padding: 60px 20px 40px 20px;
       max-width: 700px;
       margin: 0 auto;
-      padding: 60px 20px;
-      text-align: left;
-      font-family: 'Zen Maru Gothic', sans-serif;
     }
 
     .about-title {
       font-size: 1.8rem;
-      text-align: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
       margin-bottom: 40px;
       letter-spacing: 0.1em;
     }
 
-    .about-text {
-      font-size: 1rem;
-      line-height: 2;
-      color: #333333;
+    .profile-img-wrap {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 25px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .profile-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-name {
+      font-size: 1.3rem;
+      font-weight: bold;
       margin-bottom: 30px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+
+    .profile-text {
+      text-align: justify;
+      font-size: 0.95rem;
+      color: #444444;
+      line-height: 2;
+      margin-bottom: 60px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+
+    /* コンタクトセクション */
+    .contact-section {
+      position: relative;
+      width: 100%;
+      background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEipiPQvf56vFAr7cIat0NmCmTyIttPEucoYdNnT63OfaHx3CjvaAcq2xhN5iYmz9zbt_7uUcFWTOKmahuYIWpQXNt7E91ACd60rYClYZTuWubB814tCUhmoIfgFHHDzyOv8VK9FdwYTsWJXlRbw-qS29EgKyzdplKq2MuM8ob_yblhxta1nDbTAW0nI-6ZN');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 60px 20px;
+      box-sizing: border-box;
+    }
+
+    .contact-title {
+      font-size: 1.3rem;
+      font-family: sans-serif;
+      font-style: italic;
+      color: #222;
+      margin-bottom: 15px;
+    }
+
+    .contact-divider {
+      border: none;
+      border-top: 2px dotted #666;
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+    }
+
+    .contact-box {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      text-align: left;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .contact-info h3 {
+      font-size: 1.2rem;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      margin-bottom: 10px;
+    }
+
+    .contact-info p {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .contact-form {
+      flex: 1.5;
+      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      background-color: #dcdcdc;
+      border: none;
+      font-size: 0.85rem;
+      color: #333;
+    }
+
+    .contact-form textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    .send-btn {
+      align-self: flex-end;
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      padding: 6px 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: bold;
     }
 
     /* フッダーのスタイル */
@@ -122,6 +235,9 @@
       .header-logo-img {
         width: 220px;
       }
+      .contact-box {
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -140,14 +256,42 @@
   </nav>
 </header>
 
-<main class="about-main">
-  <h1 class="about-title">About</h1>
-  <p class="about-text">
-    ここに自己紹介やサイトの情報を書いていくよ。ホームと同じヘッダーとフッダーが綺麗に繋がる形にしてある。
-  </p>
-  <p class="about-text">
-    文章を増やすときは、このまま段落をコピーして書き足していけばOKだ。
-  </p>
+<main>
+  <div class="about-main">
+    <h1 class="about-title">About</h1>
+    
+    <div class="profile-img-wrap">
+      <!-- 丸いアイコン画像のURLは必要に応じて差し替えてくれ -->
+      <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjM09uj6VzouW7k94S13qr0_SKTpQPQltACJRFvmOPClTx4I22N1tF24__7k3J_ahTmSbE9BLfItbzHwYF6ExUsEHC1nwXQatPRQ0od3qUCwD5RFZBn8LVZJgam1eSEls2D5QV8Su5dkMkaqb71nGl3obJqbcQJ0sabRffgg2jfashND7lLRMPftsgahk2_" alt="紡音ゆび子">
+    </div>
+
+    <div class="profile-name">紡音ゆび子 / Tsumugine Yubico</div>
+
+    <div class="profile-text">
+      パステルとゆめかわいいと白黒絵とシュルレアリスムが好き。ときおり詩や朗読も。<br>
+      無償循環（オカネ、対価交換が必要なくなって、すべてのモノや思いが無償の与え合いで成り立つ社会）のことやビーガニズム、安楽死関連のテーマに関心を寄せています。<br>
+      give&takeではなく、give&giveで成り立つ社会。ギフトエコノミーの生き方。与えたい人の純粋な「与えたい」という気持ちと受け取りたい人の純粋な「受け取りたい」という気持ちが相互に満たされ合い、交換や対価という取引を卒業した無償提供の循環型社会への移行をお手伝い＆享受するためあれこれ創作しておりました。
+    </div>
+  </div>
+
+  <section class="contact-section">
+    <h2 class="contact-title">Let's Talk. Click to edit me.</h2>
+    <hr class="contact-divider">
+
+    <div class="contact-box">
+      <div class="contact-info">
+        <h3>Hand Drawings</h3>
+        <p>yubico2627@gmail.com</p>
+      </div>
+      <div class="contact-form">
+        <input type="text" placeholder="お名前 *">
+        <input type="email" placeholder="メールアドレス *">
+        <input type="text" placeholder="件名">
+        <textarea placeholder="メッセージ"></textarea>
+        <button class="send-btn">Send</button>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="footer-container">
