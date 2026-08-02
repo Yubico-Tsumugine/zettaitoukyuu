@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ぜったいとうきゅう</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #faf8f5;
+            color: #333333;
+            font-family: 'Zen Maru Gothic', sans-serif;
+            line-height: 1.8;
+        }
+
+        /* 共通ヘッダー */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 20px;
+            text-align: center;
+        }
+        header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #555555;
+            font-weight: bold;
+        }
+        header nav a:hover {
+            color: #000000;
+        }
+
+        /* Aboutメインコンテンツ */
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .about-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+        .profile-img-wrap {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 25px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .profile-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .profile-text {
+            text-align: justify;
+            font-size: 0.95rem;
+            color: #444444;
+            margin-bottom: 60px;
+            line-height: 2;
+        }
+
+        /* コンタクトセクション（背景画像風エリア） */
+        .contact-section {
+            position: relative;
+            background: #e5e5e5; /* 画像がない場合の仮背景 */
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .contact-box {
+            background: rgba(255, 255, 255, 0.92);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .contact-box h3 {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: normal;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #e9e9e9;
+            font-family: inherit;
+        }
+        textarea.form-control {
+            height: 120px;
+            resize: vertical;
+        }
+        .send-btn-wrap {
+            text-align: right;
+        }
+        .send-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 8px 25px;
+            font-family: inherit;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* 共通フッター */
+        footer {
+            background-color: #ffffff;
+            border-top: 1px solid #eaeaea;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.85rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 共通ヘッダー -->
+    <header>
+        <nav>
+            <a href="./index.html">Home</a>
+            <a href="./about.html">About</a>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <div class="about-container">
+            <h1 class="about-title">About</h1>
+            
+            <div class="profile-img-wrap">
+                <!-- 画像は後でGitHubに置いたURLに差し替える -->
+                <img src="images/profile.png" alt="プロフィール画像">
+            </div>
+            
+            <div class="profile-name">紡音ゆひ子 / Tsumugine Yubico</div>
+            
+            <div class="profile-text">
+                パステルとゆめかわいいと白黒絵とシュルレアリスムが好き。ときおり詩や朗読も。<br>
+                無償循環（オカネ、対価交換が必要なくなって、すべてのモノや思いが無償の与え合いで成り立つ社会）のことやビーガニズム、安楽死関連のテーマに関心を寄せています。<br>
+                give & takeではなく、give & giveで成り立つ社会。ギフトエコノミーの生き方。与えたい人の純粋な「与えたい」という気持ちと受け取りたい人の純粋な「受け取りたい」という気持ちが相互に満たされ、交換や対価という取引を卒業した無償提供の循環型社会への移行をお手伝い＆享受するためあれこれ創作しておりました。
+            </div>
+        </div>
+
+        <!-- コンタクトセクション -->
+        <section class="contact-section">
+            <div class="contact-box">
+                <h3>Let's Talk. Click to edit me.</h3>
+                <div style="font-size: 0.8rem; color: #777; margin-bottom: 20px;">
+                    yubico2627@gmail.com
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label>お名前 *</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>メールアドレス *</label>
+                        <input type="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>件名</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>メッセージ</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                    <div class="send-btn-wrap">
+                        <button type="submit" class="send-btn">Send</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- 共通フッター -->
+    <footer>
+        <p>&copy; zettaitoukyuu All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
