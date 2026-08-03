@@ -170,22 +170,23 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 90%;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       font-family: 'Zen Maru Gothic', sans-serif;
       font-weight: 700;
       color: #222222;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 6px 8px;
-      border-radius: 4px;
+      /* background: rgba(255, 255, 255, 0.85); ←ここを消す */
+      /* padding: 6px 8px; ←ここも消すか調整する */
+      /* border-radius: 4px; ←ここも消す */
       text-align: center;
       letter-spacing: 0.05em;
       opacity: 0;
       transition: opacity 0.3s ease;
-      pointer-events: none; /* マウスイベントの干渉を防ぐ */
+      pointer-events: none;
       box-sizing: border-box;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      text-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.9); /* 文字が読みやすいように周りに白い光彩を入れるとスッキリするよ */
     }
 
     /* マウスオーバー時にタイトルをふんわり浮かび上がらせる */
