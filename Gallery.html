@@ -33,6 +33,7 @@
   }
 
   .gallery-thumb-wrap {
+    position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
     background-color: #f0f0f0;
@@ -46,23 +47,38 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   .gallery-thumb-wrap:hover img {
     transform: scale(1.03);
+    opacity: 0.35;
   }
 
   .gallery-item-title {
-    font-size: 1.1rem;
-    color: #444444;
-    margin-top: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    font-size: 0.95rem;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-weight: 700;
+    color: #222222;
     text-align: center;
     letter-spacing: 0.05em;
-    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.9);
+  }
+
+  .gallery-thumb-wrap:hover .gallery-item-title {
+    opacity: 1;
   }
 
   /* モーダル（拡大表示）のスタイル */
@@ -151,141 +167,141 @@
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/yorunosanpo.jpg?raw=true" alt="夜の散歩" class="gallery-img">
+          <div class="gallery-item-title">夜の散歩</div>
         </div>
-        <div class="gallery-item-title">夜の散歩</div>
       </div>
       <!-- 2枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/mamorite.jpg?raw=true" alt="護り手" class="gallery-img">
+          <div class="gallery-item-title">護り手</div>
         </div>
-        <div class="gallery-item-title">護り手</div>
       </div>
       <!-- 3枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/toudai.jpg?raw=true.jpg" alt="灯台" class="gallery-img">
+          <div class="gallery-item-title">灯台</div>
         </div>
-        <div class="gallery-item-title">灯台</div>
       </div>
       <!-- 4枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/futsuriai.jpg?raw=true" alt="不釣合" class="gallery-img">
+          <div class="gallery-item-title">不釣合</div>
         </div>
-        <div class="gallery-item-title">不釣合</div>
       </div>
       <!-- 5枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/hitori.jpg?raw=true" alt="ひとり" class="gallery-img">
+          <div class="gallery-item-title">ひとり</div>
         </div>
-        <div class="gallery-item-title">ひとり</div>
       </div>
       <!-- 6枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/koenakikoe.png?raw=true" alt="声なき声" class="gallery-img">
+          <div class="gallery-item-title">声なき声</div>
         </div>
-        <div class="gallery-item-title">声なき声</div>
       </div>
       <!-- 7枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/doukei.png?raw=true" alt="憧憬" class="gallery-img">
+          <div class="gallery-item-title">憧憬</div>
         </div>
-        <div class="gallery-item-title">憧憬</div>
       </div>
       <!-- 8枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/tabanecolor.jpg?raw=true" alt="束ねられた個性" class="gallery-img">
+          <div class="gallery-item-title">束ねられた個性</div>
         </div>
-        <div class="gallery-item-title">束ねられた個性</div>
       </div>
       <!-- 9枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/artmuzai.png?raw=true" alt="アート無罪" class="gallery-img">
+          <div class="gallery-item-title">アート無罪</div>
         </div>
-        <div class="gallery-item-title">アート無罪</div>
       </div>
       <!-- 10枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/haikeiUtopia.png?raw=true" alt="拝啓、ユートピア" class="gallery-img">
+          <div class="gallery-item-title">拝啓、ユートピア</div>
         </div>
-        <div class="gallery-item-title">拝啓、ユートピア</div>
       </div>
       <!-- 11枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/sayonarasyoujomanga.jpg?raw=true" alt="さよなら少女漫画" class="gallery-img">
+          <div class="gallery-item-title">さよなら少女漫画</div>
         </div>
-        <div class="gallery-item-title">さよなら少女漫画</div>
       </div>
       <!-- 12枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/cube.jpg?raw=true" alt="キューブ" class="gallery-img">
+          <div class="gallery-item-title">キューブ</div>
         </div>
-        <div class="gallery-item-title">キューブ</div>
       </div>
       <!-- 13枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/hitorinozikan.jpg?raw=true" alt="ひとりの時間" class="gallery-img">
+          <div class="gallery-item-title">ひとりの時間</div>
         </div>
-        <div class="gallery-item-title">ひとりの時間</div>
       </div>
       <!-- 14枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/hitsugi.jpg?raw=true" alt="棺" class="gallery-img">
+          <div class="gallery-item-title">棺</div>
         </div>
-        <div class="gallery-item-title">棺</div>
       </div>
       <!-- 15枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/itsukatenshininaruhiniha.jpg?raw=true" alt="いつか天使になる日には" class="gallery-img">
+          <div class="gallery-item-title">いつか天使になる日には</div>
         </div>
-        <div class="gallery-item-title">いつか天使になる日には</div>
       </div>
       <!-- 16枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/muchinodaisyou.jpg?raw=true" alt="無知の代償" class="gallery-img">
+          <div class="gallery-item-title">無知の代償</div>
         </div>
-        <div class="gallery-item-title">無知の代償</div>
       </div>
       <!-- 17枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/anokoninaritakatta.jpg?raw=true" alt="あの子になりたかった" class="gallery-img">
+          <div class="gallery-item-title">あの子になりたかった</div>
         </div>
-        <div class="gallery-item-title">あの子になりたかった</div>
       </div>
       <!-- 18枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
-          <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/eiennosakura.jpg?raw=true" alt="永遠の桜" class="gallery-img">
+          <img src="https://github.com/Yubico-Tsumugine/image-storage/beta/main/eiennosakura.jpg?raw=true" alt="永遠の桜" class="gallery-img">
+          <div class="gallery-item-title">永遠の桜</div>
         </div>
-        <div class="gallery-item-title">永遠の桜</div>
       </div>
       <!-- 19枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/bokuwoageru.jpg?raw=true" alt="ボクヲアゲル" class="gallery-img">
+          <div class="gallery-item-title">ボクヲアゲル</div>
         </div>
-        <div class="gallery-item-title">ボクヲアゲル</div>
       </div>
       <!-- 20枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/aoihigan.jpg?raw=true" alt="青い彼岸" class="gallery-img">
+          <div class="gallery-item-title">青い彼岸</div>
         </div>
-        <div class="gallery-item-title">青い彼岸</div>
       </div>
     </div>
   </div>
@@ -337,4 +353,3 @@
 
 </body>
 </html>
-```[cite: 1, 2]
