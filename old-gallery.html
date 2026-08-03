@@ -33,6 +33,7 @@
   }
 
   .gallery-thumb-wrap {
+    position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
     background-color: #f0f0f0;
@@ -46,23 +47,38 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   .gallery-thumb-wrap:hover img {
     transform: scale(1.03);
+    opacity: 0.35;
   }
 
   .gallery-item-title {
-    font-size: 1.1rem;
-    color: #444444;
-    margin-top: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    font-size: 0.95rem;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-weight: 700;
+    color: #222222;
     text-align: center;
     letter-spacing: 0.05em;
-    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.9);
+  }
+
+  .gallery-thumb-wrap:hover .gallery-item-title {
+    opacity: 1;
   }
 
   /* モーダル（拡大表示）のスタイル */
@@ -151,71 +167,71 @@
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/Salvage.JPG?raw=true" alt="Salvage" class="gallery-img">
+          <div class="gallery-item-title">Salvage</div>
         </div>
-        <div class="gallery-item-title">Salvage</div>
       </div>
       <!-- 2枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/Double%20bind.jpg?raw=true" alt="ダブルバインド" class="gallery-img">
+          <div class="gallery-item-title">ダブルバインド</div>
         </div>
-        <div class="gallery-item-title">ダブルバインド</div>
       </div>
       <!-- 3枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/tokerukategori.jpg?raw=true" alt="溶ける自我（カテゴリ）" class="gallery-img">
+          <div class="gallery-item-title">溶ける自我（カテゴリ）</div>
         </div>
-        <div class="gallery-item-title">溶ける自我（カテゴリ）</div>
       </div>
       <!-- 4枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/sisen.jpg?raw=true" alt="視線" class="gallery-img">
+          <div class="gallery-item-title">視線</div>
         </div>
-        <div class="gallery-item-title">視線</div>
       </div>
       <!-- 5枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/Mudai0.jpg?raw=true" alt="無題" class="gallery-img">
+          <div class="gallery-item-title">無題</div>
         </div>
-        <div class="gallery-item-title">無題</div>
       </div>
       <!-- 6枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/midoriDppou.jpg?raw=true" alt="緑-脱法ハーブ" class="gallery-img">
+          <div class="gallery-item-title">緑-脱法ハーブ</div>
         </div>
-        <div class="gallery-item-title">緑-脱法ハーブ</div>
       </div>
       <!-- 7枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/aoOver.jpg?raw=true" alt="青-オーバードーズ" class="gallery-img">
+          <div class="gallery-item-title">青-オーバードーズ</div>
         </div>
-        <div class="gallery-item-title">青-オーバードーズ</div>
       </div>
       <!-- 8枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/akalist.jpg?raw=true" alt="赤-リストカット" class="gallery-img">
+          <div class="gallery-item-title">赤-リストカット</div>
         </div>
-        <div class="gallery-item-title">赤-リストカット</div>
       </div>
       <!-- 9枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/mahirunotuki.JPG?raw=true" alt="マヒるの月" class="gallery-img">
+          <div class="gallery-item-title">マヒるの月</div>
         </div>
-        <div class="gallery-item-title">マヒるの月</div>
       </div>
       <!-- 10枚目 -->
       <div class="gallery-item">
         <div class="gallery-thumb-wrap">
           <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/moyurudoku.jpg?raw=true" alt="萌ゆる毒" class="gallery-img">
+          <div class="gallery-item-title">萌ゆる毒</div>
         </div>
-        <div class="gallery-item-title">萌ゆる毒</div>
       </div>
     </div>
   </div>
@@ -267,4 +283,4 @@
 
 </body>
 </html>
-```[cite: 1, 2]
+```[cite: 1, 3]
