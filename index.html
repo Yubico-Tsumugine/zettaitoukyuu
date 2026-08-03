@@ -12,7 +12,7 @@
   
    <link rel="stylesheet" href="stylesheet.css">
 
-　<style>
+   <style>
     .section-container {
       width: 100%;
       padding: 60px 20px;
@@ -126,21 +126,47 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 20px 15px;
     }
 
     .gallery-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gallery-thumb-wrap {
+      width: 100%;
       aspect-ratio: 1 / 1;
       background-color: #fff;
       border: 1px solid #ccc;
       overflow: hidden;
+      cursor: pointer;
+      border-radius: 2px;
     }
 
-    .gallery-item img {
+    .gallery-thumb-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      cursor: pointer;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-thumb-wrap:hover img {
+      transform: scale(1.03);
+    }
+
+    .gallery-item-title {
+      font-size: 0.95rem;
+      color: #444444;
+      margin-top: 8px;
+      text-align: center;
+      letter-spacing: 0.05em;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .old-gallery-section {
@@ -174,33 +200,53 @@
       margin-bottom: 8px;
     }
 
+    /* モーダル全体のデザイン（タイトル対応版） */
     .modal {
       display: none;
       position: fixed;
       z-index: 1000;
-      left: 0;
       top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.85);
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal.is-active {
+      display: flex;
     }
 
     .modal-content {
       max-width: 90%;
-      max-height: 90%;
+      max-height: 75vh;
+      object-fit: contain;
       border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .modal-title {
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      letter-spacing: 0.05em;
+      text-align: center;
     }
 
     .modal-close {
       position: absolute;
-      top: 20px;
-      right: 30px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
+      top: 25px;
+      right: 35px;
+      color: #ffffff;
+      font-size: 2.5rem;
       cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
     }
 
     @media (max-width: 768px) {
@@ -209,6 +255,9 @@
       }
       .header-logo-img {
         width: 240px;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -254,22 +303,118 @@
         
         <h3 class="gallery-grid-title">いらすと</h3>
         <div class="gallery-grid">
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjM09uj6VzouW7k94S13qr0_SKTpQPQltACJRFvmOPClTx4I22N1tF24__7k3J_ahTmSbE9BLfItbzHwYF6ExUsEHC1nwXQatPRQ0od3qUCwD5RFZBn8LVZJgam1eSEls2D5QV8Su5dkMkaqb71nGl3obJqbcQJ0sabRffgg2jfashND7lLRMPftsgahk2_"></div> 
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjaCewFqku5SnARZ2AX5KaeC3aRUa7Ms_CfrEgg9811iX9PNKQKeS8T4-FcL6hXeoKd8CR8fAa3yfpt-TgRQjsA0WdH-L0Yutlgc0r0VZoptjDeAMgY2zC2krbrZ4d6h32GN-VkaR7_G6WKJ3KPvnGglWSmkgHbg4gIIfiHxPJGFWl3ITEOWuuB7X9tM4Jy"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEg2GB04QF6nWUgXGD2QcrQK-UnEmtHXqhBmyL_5E4jHa5079-ug2pPSoUeLhsaSh9EtMPcvfIg2B8QxJbgg8HAhwEuhqzoMez6fSJ0K8azymdaUe5H4_COxGnNdVcwYzW6EjR_is4cAqYJjNDRpRBQYZKAuegrZ-WZQCtKjY_h0YixxRPAkVDZrQ78BOONj"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEiGYEP1ByTIVsoVPGTr-qeOIna0rHGepiBEYOUgefPH_ruWjr05_HHMNjD03vPia23RaYt8tXaCDtRa3CMM-tpmzOelUP-on0Z8ryUgct2X5GZ74UlkGoSeof2KTbF9OktQCvsD5uVjPlEVMejoOeFFScy5WL1WKBMKcJVR1A900o4ImKmBYgPAGTKUvIHb"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhtfH1htWa06DAtT28XMdOKGeaaS1zxAlIWczgp_W1DCEmAXdcvHg-xXqT5q5jZ23Gcqvyu9PtQAnXgk9GayEPLwThyYcrRhmXK1apz_2DyjU4SUnfbdZh9qgGuvYrHdhFQYy2Yumo1aLxvy8WiG8jrp1DgkXx-srTEjH5v3-k7i6cTQ-F8pigA75R4T0oC"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEgCVh5YKB2RzXfdEziyDZUw4SuonGmg447CMWRjxu48pHzwDZI2WRWRNONtyuaEEqfvb0IBXY9VuOx7AxKifABTmUO6y8WkADONqIklaiQ8YPZ7dXhVeOwFYfOSo2aNi1EP3NiUG8EzvnBb-WnC72cx7ZF199YeHcKUWfTtk1r-rW5R3M1MQvI-58ZEeUwj"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjZhkP2XJpwuXtNd0LoGyNviu3LKs5Rwl0vEVX2dGxBHZXFGzEucxzKaDZqde4fRLoTfnleulWCNCR-8LMywx8d2CyDa4ebkxTGmlF7XjMVngudEfM-LgQLuBDOHEKY5w-Siw7TNGb6KbK8eQWBA7PihN5vUUBKgBftwycZuWE9R-y5KvR98HtmS2yxpCG0"></div>
-          <div class="gallery-item"><img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/mousou.png?raw=true"></div>
-          <div class="gallery-item"><img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/FsRZGxKagAAWnvJ.jpg?raw=true"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEj242m1FiES1SPAnLesidpS1oQM19710txB8ppKSZOlT6bLushfMhgcj6-R_8J3prpDeKH7ZQNdAB7r51Zq3BNr0BcbF7fxhxpvqKoL3in9zUZnoA7NStF2FWzL5Kh90lYyebU7nAQ118ClRk0Pcfi74Lw2MHfxN0dycqmk0C-3nRETnOAi46qf8K8JYYKb"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEjGTyKN4eiFN2IkHAgpJrLidR4ktf5ybGfkJ08NkQTgblH-_tFZfomTaOCKR9wztAByNmScbgw6_C0dZ262yWIah2aj_waTNeTBoizsvO3bV7uteVGo5efRT6ztFzAyxmbCUmtzherD33Oejxx_sxKDva4vr7uoJADJAnx7nOJFosytwpWPMOgbh_YBhhBv"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhxMnE18YSWc5agx06N4RQhXBkbc6QHVSFZ3Z_PBeAUA8X7f4LynhebAENzJFezYm9I2bJvPqbADcNKXoOPV0QkWSSfkb_0ipwLUVpnft5lF5lDRDMcisB4RulOsE8v3HUbOJwYOvwi6HajTsuC-FwjIdsUnSO2Smo3M9FZRqpOcLb_Ncn6DcLEcJbuVESL"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhh-cdd83VW4a4XouM_8cLzN_bSUbHXxj0FEAn5GFllKDP5L2fpqvb_jO7GRlyuqEai5BjNnIv-ea81ziZyyZapl1cppbw5bNDWbQb0XDdC_iQoDmSkujD9eyxTbV7kEfG4ek-1XoQ-O11CaEREg9FUB4n9jL7fiEUXgy0IZyYq4Zkc16uVPis2JVJwl0gE"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhTtBrjsWchzLRTDYAiGh6S55_WikRXbOuJRq63cNunpYegGZlY4ObCcz2KgVBdi3cNZr3RE7Bg42sdgNb0ReEmTKnsZCR-akGofVuUs0Yxkw9qiEByl1EJ8uwh95wCam9P1MQr_C6GVJXQvIRz32D9mlw49uS_EQbCz7v0bzkXxdM1r3n1tAZebGGTN5Ht"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEggHLFgtx7_gCDPP2EEHqdb1kEPEGC-WLsLpIq_68vJ4IKfWtWt2cAOb8nPrhi1Yt0JvKhxJ_uz5kGob5gUV3urVCughGj5LxII4dLwn9qvD5ttW2Iq0d2Hy_-H_Jk-ErN_u8C3XU7QIs5T8wQz9nltvsTuEa-1wYZiBVnR30Vnz2sSHegp0oa-ILMeoPMK"></div>
-          <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEilBG5gZZvVVXa3z9wpFJ_BGYkTreKsxnuzthHqn8F_aaUNYqXV-BWyztpEMHQHVBtF4YVLBpdm7kshC5lTcgvsGe0gARNTPBbpWrLyp6ka20LX2qqg5qagnTtkw8h44KaPl28ezT8TrUoypQy9X-4oTOuJxXXKGOw_VNBwNWJoH9oju03EjIqjWeZUxPUU"></div>
+          <!-- 1枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjM09uj6VzouW7k94S13qr0_SKTpQPQltACJRFvmOPClTx4I22N1tF24__7k3J_ahTmSbE9BLfItbzHwYF6ExUsEHC1nwXQatPRQ0od3qUCwD5RFZBn8LVZJgam1eSEls2D5QV8Su5dkMkaqb71nGl3obJqbcQJ0sabRffgg2jfashND7lLRMPftsgahk2_" alt="とある研究者の日記" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">とある研究者の日記</div>
+          </div>
+          <!-- 2枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjaCewFqku5SnARZ2AX5KaeC3aRUa7Ms_CfrEgg9811iX9PNKQKeS8T4-FcL6hXeoKd8CR8fAa3yfpt-TgRQjsA0WdH-L0Yutlgc0r0VZoptjDeAMgY2zC2krbrZ4d6h32GN-VkaR7_G6WKJ3KPvnGglWSmkgHbg4gIIfiHxPJGFWl3ITEOWuuB7X9tM4Jy" alt="イラスト2" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル2</div>
+          </div>
+          <!-- 3枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg2GB04QF6nWUgXGD2QcrQK-UnEmtHXqhBmyL_5E4jHa5079-ug2pPSoUeLhsaSh9EtMPcvfIg2B8QxJbgg8HAhwEuhqzoMez6fSJ0K8azymdaUe5H4_COxGnNdVcwYzW6EjR_is4cAqYJjNDRpRBQYZKAuegrZ-WZQCtKjY_h0YixxRPAkVDZrQ78BOONj" alt="イラスト3" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル3</div>
+          </div>
+          <!-- 4枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiGYEP1ByTIVsoVPGTr-qeOIna0rHGepiBEYOUgefPH_ruWjr05_HHMNjD03vPia23RaYt8tXaCDtRa3CMM-tpmzOelUP-on0Z8ryUgct2X5GZ74UlkGoSeof2KTbF9OktQCvsD5uVjPlEVMejoOeFFScy5WL1WKBMKcJVR1A900o4ImKmBYgPAGTKUvIHb" alt="イラスト4" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル4</div>
+          </div>
+          <!-- 5枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhtfH1htWa06DAtT28XMdOKGeaaS1zxAlIWczgp_W1DCEmAXdcvHg-xXqT5q5jZ23Gcqvyu9PtQAnXgk9GayEPLwThyYcrRhmXK1apz_2DyjU4SUnfbdZh9qgGuvYrHdhFQYy2Yumo1aLxvy8WiG8jrp1DgkXx-srTEjH5v3-k7i6cTQ-F8pigA75R4T0oC" alt="イラスト5" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル5</div>
+          </div>
+          <!-- 6枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgCVh5YKB2RzXfdEziyDZUw4SuonGmg447CMWRjxu48pHzwDZI2WRWRNONtyuaEEqfvb0IBXY9VuOx7AxKifABTmUO6y8WkADONqIklaiQ8YPZ7dXhVeOwFYfOSo2aNi1EP3NiUG8EzvnBb-WnC72cx7ZF199YeHcKUWfTtk1r-rW5R3M1MQvI-58ZEeUwj" alt="イラスト6" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル6</div>
+          </div>
+          <!-- 7枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjZhkP2XJpwuXtNd0LoGyNviu3LKs5Rwl0vEVX2dGxBHZXFGzEucxzKaDZqde4fRLoTfnleulWCNCR-8LMywx8d2CyDa4ebkxTGmlF7XjMVngudEfM-LgQLuBDOHEKY5w-Siw7TNGb6KbK8eQWBA7PihN5vUUBKgBftwycZuWE9R-y5KvR98HtmS2yxpCG0" alt="イラスト7" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル7</div>
+          </div>
+          <!-- 8枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/mousou.png?raw=true" alt="イラスト8" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル8</div>
+          </div>
+          <!-- 9枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/FsRZGxKagAAWnvJ.jpg?raw=true" alt="イラスト9" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル9</div>
+          </div>
+          <!-- 10枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEj242m1FiES1SPAnLesidpS1oQM19710txB8ppKSZOlT6bLushfMhgcj6-R_8J3prpDeKH7ZQNdAB7r51Zq3BNr0BcbF7fxhxpvqKoL3in9zUZnoA7NStF2FWzL5Kh90lYyebU7nAQ118ClRk0Pcfi74Lw2MHfxN0dycqmk0C-3nRETnOAi46qf8K8JYYKb" alt="イラスト10" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル10</div>
+          </div>
+          <!-- 11枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjGTyKN4eiFN2IkHAgpJrLidR4ktf5ybGfkJ08NkQTgblH-_tFZfomTaOCKR9wztAByNmScbgw6_C0dZ262yWIah2aj_waTNeTBoizsvO3bV7uteVGo5efRT6ztFzAyxmbCUmtzherD33Oejxx_sxKDva4vr7uoJADJAnx7nOJFosytwpWPMOgbh_YBhhBv" alt="イラスト11" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル11</div>
+          </div>
+          <!-- 12枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhxMnE18YSWc5agx06N4RQhXBkbc6QHVSFZ3Z_PBeAUA8X7f4LynhebAENzJFezYm9I2bJvPqbADcNKXoOPV0QkWSSfkb_0ipwLUVpnft5lF5lDRDMcisB4RulOsE8v3HUbOJwYOvwi6HajTsuC-FwjIdsUnSO2Smo3M9FZRqpOcLb_Ncn6DcLEcJbuVESL" alt="イラスト12" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル12</div>
+          </div>
+          <!-- 13枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhh-cdd83VW4a4XouM_8cLzN_bSUbHXxj0FEAn5GFllKDP5L2fpqvb_jO7GRlyuqEai5BjNnIv-ea81ziZyyZapl1cppbw5bNDWbQb0XDdC_iQoDmSkujD9eyxTbV7kEfG4ek-1XoQ-O11CaEREg9FUB4n9jL7fiEUXgy0IZyYq4Zkc16uVPis2JVJwl0gE" alt="イラスト13" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル13</div>
+          </div>
+          <!-- 14枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhTtBrjsWchzLRTDYAiGh6S55_WikRXbOuJRq63cNunpYegGZlY4ObCcz2KgVBdi3cNZr3RE7Bg42sdgNb0ReEmTKnsZCR-akGofVuUs0Yxkw9qiEByl1EJ8uwh95wCam9P1MQr_C6GVJXQvIRz32D9mlw49uS_EQbCz7v0bzkXxdM1r3n1tAZebGGTN5Ht" alt="イラスト14" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル14</div>
+          </div>
+          <!-- 15枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEggHLFgtx7_gCDPP2EEHqdb1kEPEGC-WLsLpIq_68vJ4IKfWtWt2cAOb8nPrhi1Yt0JvKhxJ_uz5kGob5gUV3urVCughGj5LxII4dLwn9qvD5ttW2Iq0d2Hy_-H_Jk-ErN_u8C3XU7QIs5T8wQz9nltvsTuEa-1wYZiBVnR30Vnz2sSHegp0oa-ILMeoPMK" alt="イラスト15" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル15</div>
+          </div>
+          <!-- 16枚目 -->
+          <div class="gallery-item">
+            <div class="gallery-thumb-wrap">
+              <img src="https://blogger.googleusercontent.com/img/a/AVvXsEilBG5gZZvVVXa3z9wpFJ_BGYkTreKsxnuzthHqn8F_aaUNYqXV-BWyztpEMHQHVBtF4YVLBpdm7kshC5lTcgvsGe0gARNTPBbpWrLyp6ka20LX2qqg5qagnTtkw8h44KaPl28ezT8TrUoypQy9X-4oTOuJxXXKGOw_VNBwNWJoH9oju03EjIqjWeZUxPUU" alt="イラスト16" class="gallery-img">
+            </div>
+            <div class="gallery-item-title">イラストのタイトル16</div>
+          </div>
         </div>
         <button class="read-more-btn">Read More</button>
       </div>
@@ -278,14 +423,62 @@
     <section class="section-container old-gallery-section">
       <h2 class="section-title">旧Gallery</h2>
       <div class="gallery-grid">
-        <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhiv5-qAQyAthU3RlpeGdoGX5xmYu0hEHYCRBzYAEFqT2uQwMKpLGR9KCE1bQH7_eCJhf8NlkdLK-TNaW7NcCsCSu08vdpdfyhAZv9er6kJ_fQ_JJCqGCddMY-ta-fn-YdEY13LuXKM4pA3Ru-pP15hiWH4f-ksJYg0pP2Jxd7GuWXbtd71wG_aNY5kWIG0"></div>
-        <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEi8g3MJAtOfH_lA7VqTlDPQ5_87XsEQbh_-YfncyiGkfwn40LoPrznmQUDCWekUYJFbXjQTR4g7NvwK39ONsrwh2Q4TMogPo5Dr-LOHghDbugr7sH1tGc_vbeU6Nas9lx-wlilcaYKh_0cbZl953hmjhhrsaJhco9bbQs3QBwX-iyRBBHW1u4NhsYL3XJI8"></div>
-        <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEglNeqeHTz4E9OG5xWOKN2IQ0_8vX3Yx5J5RHM1DkTDNiqpas8L06Hj_B4_xZmtBiKhqJTtLR1aPnaiqg-EDrNww3e_a3S8-wrhkBkDl5h2qTkSE5ElL4ehpMQCcltCqdiDmqMgq5Md7U1nJkTUX6N2hpeGib5JYc1Ybvwi1OwPVs1bskOtx35PUiGJbuoy"></div>
-        <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEiQ2CadhyNCz1lOFVT6qlZP3n9KeW1PeDC1_E4OW0ZmRKK14XYqfy5m_hFykKYtC8k0xA4yBhvSdmAQX7DXyPL60QonXuO8QD8iypscSKjcec0C15IwB-1Dk9FssJiaQAa89n0KMGxj2cZ38_cL49xXUeZDnZ4Lk704Oqw0CDwCANffZrAq6OZQ8JwOUPYr"></div>
-        <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEhtfoYV6lWQm-Ih1huEi_Z1yxPbF_4D013_eK__K9moPUtHNtrx8w3WWxwI0PkjTKOernC5E2Ow3KVqW6ODD1noCl49AI5zjkefel1JlKTGOSG8pbCErN2U8mKHKABrIKMHgrZosMHX1u2lw7gk46OMceZ3NdRaT5VACxPoCDHfVVk6RIUQyzVAxtlsDGBV"></div>
-        <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEiHDSKIBCErvHGIRDK-5fakWykmT9QNb40sVAMWyKsLqsCKXx5zBdD0i6mhERZ7EgXXRdsisBV6sFaxhH6vcF8mtgHVyF5ojJyph751P4z5eGPmM_3l62ys-ZwxmeBb3BC0zNxSxVSKyuBu39tJrveQoqGH9tI1o65hr4vR58RhnPIci1qDz7tW-L04KyGH"></div>
-        <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEigg9he2kSmzAjqdZO4eXnsYlhGh1BG5z5UsXyTm2FPklNSrMTAnW56QWCrTh7NsVGUy_yF4d1C3xbae9IcablYO6KPQYrUqpmnPMeId0H9DvaXPNS-60rELRoikcn1BYvhtYmZcSAEdsuuTPClFkUo77t7qohpda7_ySDatGKWxhKTAtM-fuuGQdedmf8Z"></div>
-        <div class="gallery-item"><img src="https://blogger.googleusercontent.com/img/a/AVvXsEgQOgBm2zgILyS5FnJhf1GwuhrqKGyMU7HFmV6F4y8ZcuJDqqLuAv7pKB1YcruSKRxwAIvltQwoghT4rG-3BTIbwoFvxI1iWiiM8t4OT6FQOV8hlK3oEC9F3u5H_FXh9NWBtikjBfo9JpHcCR1hAElzdP07bk5Y6VSMSfkJqus6pOxSGYrmK5SfbfsDa7dM"></div>
+        <!-- 旧Gallery 1枚目 -->
+        <div class="gallery-item">
+          <div class="gallery-thumb-wrap">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhiv5-qAQyAthU3RlpeGdoGX5xmYu0hEHYCRBzYAEFqT2uQwMKpLGR9KCE1bQH7_eCJhf8NlkdLK-TNaW7NcCsCSu08vdpdfyhAZv9er6kJ_fQ_JJCqGCddMY-ta-fn-YdEY13LuXKM4pA3Ru-pP15hiWH4f-ksJYg0pP2Jxd7GuWXbtd71wG_aNY5kWIG0" alt="旧イラスト1" class="gallery-img">
+          </div>
+          <div class="gallery-item-title">旧イラストタイトル1</div>
+        </div>
+        <!-- 旧Gallery 2枚目 -->
+        <div class="gallery-item">
+          <div class="gallery-thumb-wrap">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEi8g3MJAtOfH_lA7VqTlDPQ5_87XsEQbh_-YfncyiGkfwn40LoPrznmQUDCWekUYJFbXjQTR4g7NvwK39ONsrwh2Q4TMogPo5Dr-LOHghDbugr7sH1tGc_vbeU6Nas9lx-wlilcaYKh_0cbZl953hmjhhrsaJhco9bbQs3QBwX-iyRBBHW1u4NhsYL3XJI8" alt="旧イラスト2" class="gallery-img">
+          </div>
+          <div class="gallery-item-title">旧イラストタイトル2</div>
+        </div>
+        <!-- 旧Gallery 3枚目 -->
+        <div class="gallery-item">
+          <div class="gallery-thumb-wrap">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEglNeqeHTz4E9OG5xWOKN2IQ0_8vX3Yx5J5RHM1DkTDNiqpas8L06Hj_B4_xZmtBiKhqJTtLR1aPnaiqg-EDrNww3e_a3S8-wrhkBkDl5h2qTkSE5ElL4ehpMQCcltCqdiDmqMgq5Md7U1nJkTUX6N2hpeGib5JYc1Ybvwi1OwPVs1bskOtx35PUiGJbuoy" alt="旧イラスト3" class="gallery-img">
+          </div>
+          <div class="gallery-item-title">旧イラストタイトル3</div>
+        </div>
+        <!-- 旧Gallery 4枚目 -->
+        <div class="gallery-item">
+          <div class="gallery-thumb-wrap">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiQ2CadhyNCz1lOFVT6qlZP3n9KeW1PeDC1_E4OW0ZmRKK14XYqfy5m_hFykKYtC8k0xA4yBhvSdmAQX7DXyPL60QonXuO8QD8iypscSKjcec0C15IwB-1Dk9FssJiaQAa89n0KMGxj2cZ38_cL49xXUeZDnZ4Lk704Oqw0CDwCANffZrAq6OZQ8JwOUPYr" alt="旧イラスト4" class="gallery-img">
+          </div>
+          <div class="gallery-item-title">旧イラストタイトル4</div>
+        </div>
+        <!-- 旧Gallery 5枚目 -->
+        <div class="gallery-item">
+          <div class="gallery-thumb-wrap">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhtfoYV6lWQm-Ih1huEi_Z1yxPbF_4D013_eK__K9moPUtHNtrx8w3WWxwI0PkjTKOernC5E2Ow3KVqW6ODD1noCl49AI5zjkefel1JlKTGOSG8pbCErN2U8mKHKABrIKMHgrZosMHX1u2lw7gk46OMceZ3NdRaT5VACxPoCDHfVVk6RIUQyzVAxtlsDGBV" alt="旧イラスト5" class="gallery-img">
+          </div>
+          <div class="gallery-item-title">旧イラストタイトル5</div>
+        </div>
+        <!-- 旧Gallery 6枚目 -->
+        <div class="gallery-item">
+          <div class="gallery-thumb-wrap">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiHDSKIBCErvHGIRDK-5fakWykmT9QNb40sVAMWyKsLqsCKXx5zBdD0i6mhERZ7EgXXRdsisBV6sFaxhH6vcF8mtgHVyF5ojJyph751P4z5eGPmM_3l62ys-ZwxmeBb3BC0zNxSxVSKyuBu39tJrveQoqGH9tI1o65hr4vR58RhnPIci1qDz7tW-L04KyGH" alt="旧イラスト6" class="gallery-img">
+          </div>
+          <div class="gallery-item-title">旧イラストタイトル6</div>
+        </div>
+        <!-- 旧Gallery 7枚目 -->
+        <div class="gallery-item">
+          <div class="gallery-thumb-wrap">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEigg9he2kSmzAjqdZO4eXnsYlhGh1BG5z5UsXyTm2FPklNSrMTAnW56QWCrTh7NsVGUy_yF4d1C3xbae9IcablYO6KPQYrUqpmnPMeId0H9DvaXPNS-60rELRoikcn1BYvhtYmZcSAEdsuuTPClFkUo77t7qohpda7_ySDatGKWxhKTAtM-fuuGQdedmf8Z" alt="旧イラスト7" class="gallery-img">
+          </div>
+          <div class="gallery-item-title">旧イラストタイトル7</div>
+        </div>
+        <!-- 旧Gallery 8枚目 -->
+        <div class="gallery-item">
+          <div class="gallery-thumb-wrap">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgQOgBm2zgILyS5FnJhf1GwuhrqKGyMU7HFmV6F4y8ZcuJDqqLuAv7pKB1YcruSKRxwAIvltQwoghT4rG-3BTIbwoFvxI1iWiiM8t4OT6FQOV8hlK3oEC9F3u5H_FXh9NWBtikjBfo9JpHcCR1hAElzdP07bk5Y6VSMSfkJqus6pOxSGYrmK5SfbfsDa7dM" alt="旧イラスト8" class="gallery-img">
+          </div>
+          <div class="gallery-item-title">旧イラストタイトル8</div>
+        </div>
       </div>
       <button class="read-more-btn">Read More</button>
     </section>
@@ -297,41 +490,46 @@
   <div>&copy; Yubico Tsumugine All Rights Reserved.</div>
 </footer>
 
-<div class="modal" id="image-modal">
-  <span class="modal-close">&times;</span>
-  <img class="modal-content" id="modal-img">
+<!-- モーダル用要素（タイトル対応版） -->
+<div class="modal" id="imageModal">
+  <button class="modal-close" id="modalClose">&times;</button>
+  <img class="modal-content" id="modalImg" src="" alt="拡大画像">
+  <div class="modal-title" id="modalTitle"></div>
 </div>
 
 <script>
-window.onload = function() {
-  var modal = document.getElementById('image-modal');
-  var modalImg = document.getElementById('modal-img');
-  var closeBtn = document.querySelector('.modal-close');
-  var imgs = document.querySelectorAll('.gallery-item img');
+  // クリックでタイトル付きのモーダルを開く仕組み
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalClose = document.getElementById('modalClose');
+  const galleryItems = document.querySelectorAll('.gallery-item');
 
-  for (var i = 0; i < imgs.length; i++) {
-    imgs[i].onclick = function() {
-      if (modal && modalImg) {
-        modal.style.display = 'flex';
-        modalImg.src = this.src;
-      }
-    };
-  }
+  galleryItems.forEach(item => {
+    const thumbWrap = item.querySelector('.gallery-thumb-wrap');
+    const img = item.querySelector('.gallery-img');
+    const title = item.querySelector('.gallery-item-title');
 
-  if (closeBtn) {
-    closeBtn.onclick = function() {
-      modal.style.display = 'none';
-    };
-  }
+    if (thumbWrap && img && title) {
+      thumbWrap.addEventListener('click', () => {
+        modal.classList.add('is-active');
+        modalImg.src = img.src;
+        modalTitle.textContent = title.textContent;
+      });
+    }
+  });
 
-  if (modal) {
-    modal.onclick = function(e) {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    };
-  }
-};
+  // 閉じるボタンか背景クリックで閉じる
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('is-active');
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('is-active');
+    }
+  });
 </script>
 </body>
 </html>
+```[cite: 1]
