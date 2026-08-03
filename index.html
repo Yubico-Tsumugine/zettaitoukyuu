@@ -137,10 +137,12 @@
       align-items: center;
     }
 
+    /* ホバー演出用の相対位置と背景設定 */
     .gallery-thumb-wrap {
+      position: relative;
       width: 100%;
       aspect-ratio: 1 / 1;
-      background-color: #fff;
+      background-color: #ffffff; /* ホバー時に薄くなったときの背景色 */
       border: 1px solid #ccc;
       overflow: hidden;
       cursor: pointer;
@@ -152,52 +154,66 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
+    /* マウスオーバー時に画像を薄くする */
     .gallery-thumb-wrap:hover img {
+      opacity: 0.35;
       transform: scale(1.03);
     }
 
+    /* オーバーレイするタイトル */
     .gallery-item-title {
-      font-size: 0.90rem;
-      color: #444444;
-      margin-top: 8px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      font-size: 0.85rem;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 700;
+      color: #222222;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 8px;
+      border-radius: 4px;
       text-align: center;
       letter-spacing: 0.05em;
-      width: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none; /* マウスイベントの干渉を防ぐ */
+      box-sizing: border-box;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    /* マウスオーバー時にタイトルをふんわり浮かび上がらせる */
+    .gallery-thumb-wrap:hover .gallery-item-title {
+      opacity: 1;
     }
 
     .old-gallery-section {
       background-color: #ffffff;
     }
 
-  .read-more-btn {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 10px 32px;
-  background: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 8px;
-  color: #808080;
-  text-decoration: none;
-  font-size: 0.95rem;
-  cursor: pointer;
-  font-family: 'Zen Maru Gothic', sans-serif;
-}
-
-.read-more-btn:hover {
-  color: #333333;
-
-}
+    .read-more-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 32px;
+      background: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 8px;
+      color: #808080;
+      text-decoration: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
 
     .read-more-btn:hover {
       color: #333333;
     }
-    
 
     .footer-container {
       width: 100%;
@@ -215,7 +231,7 @@
       margin-bottom: 8px;
     }
 
-    /* モーダル全体のデザイン（タイトル対応版） */
+    /* モーダル全体のデザイン */
     .modal {
       display: none;
       position: fixed;
@@ -322,113 +338,113 @@
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjM09uj6VzouW7k94S13qr0_SKTpQPQltACJRFvmOPClTx4I22N1tF24__7k3J_ahTmSbE9BLfItbzHwYF6ExUsEHC1nwXQatPRQ0od3qUCwD5RFZBn8LVZJgam1eSEls2D5QV8Su5dkMkaqb71nGl3obJqbcQJ0sabRffgg2jfashND7lLRMPftsgahk2_" alt="とある研究者の日記" class="gallery-img">
+              <div class="gallery-item-title">とある研究者の日記</div>
             </div>
-            <div class="gallery-item-title">とある研究者の日記</div>
           </div>
           <!-- 2枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/38okunennobouryoku.JPG?raw=true" alt="38億年の暴力" class="gallery-img">
+              <div class="gallery-item-title">38億年の暴力</div>
             </div>
-            <div class="gallery-item-title">38億年の暴力</div>
           </div>
           <!-- 3枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg2GB04QF6nWUgXGD2QcrQK-UnEmtHXqhBmyL_5E4jHa5079-ug2pPSoUeLhsaSh9EtMPcvfIg2B8QxJbgg8HAhwEuhqzoMez6fSJ0K8azymdaUe5H4_COxGnNdVcwYzW6EjR_is4cAqYJjNDRpRBQYZKAuegrZ-WZQCtKjY_h0YixxRPAkVDZrQ78BOONj" alt="トラックから逃げ出した夜" class="gallery-img">
+              <div class="gallery-item-title">トラックから逃げ出した夜</div>
             </div>
-            <div class="gallery-item-title">トラックから逃げ出した夜</div>
           </div>
           <!-- 4枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiGYEP1ByTIVsoVPGTr-qeOIna0rHGepiBEYOUgefPH_ruWjr05_HHMNjD03vPia23RaYt8tXaCDtRa3CMM-tpmzOelUP-on0Z8ryUgct2X5GZ74UlkGoSeof2KTbF9OktQCvsD5uVjPlEVMejoOeFFScy5WL1WKBMKcJVR1A900o4ImKmBYgPAGTKUvIHb" alt="ユークリッドの檻" class="gallery-img">
+              <div class="gallery-item-title">ユークリッドの檻</div>
             </div>
-            <div class="gallery-item-title">ユークリッドの檻</div>
           </div>
           <!-- 5枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhtfH1htWa06DAtT28XMdOKGeaaS1zxAlIWczgp_W1DCEmAXdcvHg-xXqT5q5jZ23Gcqvyu9PtQAnXgk9GayEPLwThyYcrRhmXK1apz_2DyjU4SUnfbdZh9qgGuvYrHdhFQYy2Yumo1aLxvy8WiG8jrp1DgkXx-srTEjH5v3-k7i6cTQ-F8pigA75R4T0oC" alt="愛しいひと" class="gallery-img">
+              <div class="gallery-item-title">愛しいひと</div>
             </div>
-            <div class="gallery-item-title">愛しいひと</div>
           </div>
           <!-- 6枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgCVh5YKB2RzXfdEziyDZUw4SuonGmg447CMWRjxu48pHzwDZI2WRWRNONtyuaEEqfvb0IBXY9VuOx7AxKifABTmUO6y8WkADONqIklaiQ8YPZ7dXhVeOwFYfOSo2aNi1EP3NiUG8EzvnBb-WnC72cx7ZF199YeHcKUWfTtk1r-rW5R3M1MQvI-58ZEeUwj" alt="涙" class="gallery-img">
+              <div class="gallery-item-title">涙</div>
             </div>
-            <div class="gallery-item-title">涙</div>
           </div>
           <!-- 7枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjZhkP2XJpwuXtNd0LoGyNviu3LKs5Rwl0vEVX2dGxBHZXFGzEucxzKaDZqde4fRLoTfnleulWCNCR-8LMywx8d2CyDa4ebkxTGmlF7XjMVngudEfM-LgQLuBDOHEKY5w-Siw7TNGb6KbK8eQWBA7PihN5vUUBKgBftwycZuWE9R-y5KvR98HtmS2yxpCG0" alt="退廃" class="gallery-img">
+              <div class="gallery-item-title">退廃</div>
             </div>
-            <div class="gallery-item-title">退廃</div>
           </div>
           <!-- 8枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/mousou.png?raw=true" alt="妄葬" class="gallery-img">
+              <div class="gallery-item-title">妄葬</div>
             </div>
-            <div class="gallery-item-title">妄葬</div>
           </div>
           <!-- 9枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://github.com/Yubico-Tsumugine/image-storage/blob/main/FsRZGxKagAAWnvJ.jpg?raw=true" alt="まどろみ" class="gallery-img">
+              <div class="gallery-item-title">まどろみ</div>
             </div>
-            <div class="gallery-item-title">まどろみ</div>
           </div>
           <!-- 10枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEj242m1FiES1SPAnLesidpS1oQM19710txB8ppKSZOlT6bLushfMhgcj6-R_8J3prpDeKH7ZQNdAB7r51Zq3BNr0BcbF7fxhxpvqKoL3in9zUZnoA7NStF2FWzL5Kh90lYyebU7nAQ118ClRk0Pcfi74Lw2MHfxN0dycqmk0C-3nRETnOAi46qf8K8JYYKb" alt="宇宙船" class="gallery-img">
+              <div class="gallery-item-title">宇宙船</div>
             </div>
-            <div class="gallery-item-title">宇宙船</div>
           </div>
           <!-- 11枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjGTyKN4eiFN2IkHAgpJrLidR4ktf5ybGfkJ08NkQTgblH-_tFZfomTaOCKR9wztAByNmScbgw6_C0dZ262yWIah2aj_waTNeTBoizsvO3bV7uteVGo5efRT6ztFzAyxmbCUmtzherD33Oejxx_sxKDva4vr7uoJADJAnx7nOJFosytwpWPMOgbh_YBhhBv" alt="どうして" class="gallery-img">
+              <div class="gallery-item-title">どうして</div>
             </div>
-            <div class="gallery-item-title">どうして</div>
           </div>
           <!-- 12枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhxMnE18YSWc5agx06N4RQhXBkbc6QHVSFZ3Z_PBeAUA8X7f4LynhebAENzJFezYm9I2bJvPqbADcNKXoOPV0QkWSSfkb_0ipwLUVpnft5lF5lDRDMcisB4RulOsE8v3HUbOJwYOvwi6HajTsuC-FwjIdsUnSO2Smo3M9FZRqpOcLb_Ncn6DcLEcJbuVESL" alt="倦怠" class="gallery-img">
+              <div class="gallery-item-title">倦怠</div>
             </div>
-            <div class="gallery-item-title">倦怠</div>
           </div>
           <!-- 13枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhh-cdd83VW4a4XouM_8cLzN_bSUbHXxj0FEAn5GFllKDP5L2fpqvb_jO7GRlyuqEai5BjNnIv-ea81ziZyyZapl1cppbw5bNDWbQb0XDdC_iQoDmSkujD9eyxTbV7kEfG4ek-1XoQ-O11CaEREg9FUB4n9jL7fiEUXgy0IZyYq4Zkc16uVPis2JVJwl0gE" alt="違う世界" class="gallery-img">
+              <div class="gallery-item-title">違う世界</div>
             </div>
-            <div class="gallery-item-title">違う世界</div>
           </div>
           <!-- 14枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhTtBrjsWchzLRTDYAiGh6S55_WikRXbOuJRq63cNunpYegGZlY4ObCcz2KgVBdi3cNZr3RE7Bg42sdgNb0ReEmTKnsZCR-akGofVuUs0Yxkw9qiEByl1EJ8uwh95wCam9P1MQr_C6GVJXQvIRz32D9mlw49uS_EQbCz7v0bzkXxdM1r3n1tAZebGGTN5Ht" alt="天使は自殺しました。" class="gallery-img">
+              <div class="gallery-item-title">天使は自殺しました。</div>
             </div>
-            <div class="gallery-item-title">天使は自殺しました。</div>
           </div>
           <!-- 15枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEggHLFgtx7_gCDPP2EEHqdb1kEPEGC-WLsLpIq_68vJ4IKfWtWt2cAOb8nPrhi1Yt0JvKhxJ_uz5kGob5gUV3urVCughGj5LxII4dLwn9qvD5ttW2Iq0d2Hy_-H_Jk-ErN_u8C3XU7QIs5T8wQz9nltvsTuEa-1wYZiBVnR30Vnz2sSHegp0oa-ILMeoPMK" alt="自由へ" class="gallery-img">
+              <div class="gallery-item-title">自由へ</div>
             </div>
-            <div class="gallery-item-title">自由へ</div>
           </div>
           <!-- 16枚目 -->
           <div class="gallery-item">
             <div class="gallery-thumb-wrap">
               <img src="https://blogger.googleusercontent.com/img/a/AVvXsEilBG5gZZvVVXa3z9wpFJ_BGYkTreKsxnuzthHqn8F_aaUNYqXV-BWyztpEMHQHVBtF4YVLBpdm7kshC5lTcgvsGe0gARNTPBbpWrLyp6ka20LX2qqg5qagnTtkw8h44KaPl28ezT8TrUoypQy9X-4oTOuJxXXKGOw_VNBwNWJoH9oju03EjIqjWeZUxPUU" alt="失熱" class="gallery-img">
+              <div class="gallery-item-title">失熱</div>
             </div>
-            <div class="gallery-item-title">失熱</div>
           </div>
         </div>
         <a href="Gallery.html" class="read-more-btn">Read More</a>
@@ -442,57 +458,57 @@
         <div class="gallery-item">
           <div class="gallery-thumb-wrap">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhiv5-qAQyAthU3RlpeGdoGX5xmYu0hEHYCRBzYAEFqT2uQwMKpLGR9KCE1bQH7_eCJhf8NlkdLK-TNaW7NcCsCSu08vdpdfyhAZv9er6kJ_fQ_JJCqGCddMY-ta-fn-YdEY13LuXKM4pA3Ru-pP15hiWH4f-ksJYg0pP2Jxd7GuWXbtd71wG_aNY5kWIG0" alt="うつむくん" class="gallery-img">
+            <div class="gallery-item-title">うつむくん</div>
           </div>
-          <div class="gallery-item-title">うつむくん</div>
         </div>
         <!-- 旧Gallery 2枚目 -->
         <div class="gallery-item">
           <div class="gallery-thumb-wrap">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEi8g3MJAtOfH_lA7VqTlDPQ5_87XsEQbh_-YfncyiGkfwn40LoPrznmQUDCWekUYJFbXjQTR4g7NvwK39ONsrwh2Q4TMogPo5Dr-LOHghDbugr7sH1tGc_vbeU6Nas9lx-wlilcaYKh_0cbZl953hmjhhrsaJhco9bbQs3QBwX-iyRBBHW1u4NhsYL3XJI8" alt="一日" class="gallery-img">
+            <div class="gallery-item-title">一日</div>
           </div>
-          <div class="gallery-item-title">一日</div>
         </div>
         <!-- 旧Gallery 3枚目 -->
         <div class="gallery-item">
           <div class="gallery-thumb-wrap">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEglNeqeHTz4E9OG5xWOKN2IQ0_8vX3Yx5J5RHM1DkTDNiqpas8L06Hj_B4_xZmtBiKhqJTtLR1aPnaiqg-EDrNww3e_a3S8-wrhkBkDl5h2qTkSE5ElL4ehpMQCcltCqdiDmqMgq5Md7U1nJkTUX6N2hpeGib5JYc1Ybvwi1OwPVs1bskOtx35PUiGJbuoy" alt="ぽた子ちゃん" class="gallery-img">
+            <div class="gallery-item-title">ぽた子ちゃん</div>
           </div>
-          <div class="gallery-item-title">ぽた子ちゃん</div>
         </div>
         <!-- 旧Gallery 4枚目 -->
         <div class="gallery-item">
           <div class="gallery-thumb-wrap">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiQ2CadhyNCz1lOFVT6qlZP3n9KeW1PeDC1_E4OW0ZmRKK14XYqfy5m_hFykKYtC8k0xA4yBhvSdmAQX7DXyPL60QonXuO8QD8iypscSKjcec0C15IwB-1Dk9FssJiaQAa89n0KMGxj2cZ38_cL49xXUeZDnZ4Lk704Oqw0CDwCANffZrAq6OZQ8JwOUPYr" alt="明らめた日の夜空" class="gallery-img">
+            <div class="gallery-item-title">明らめた日の夜空</div>
           </div>
-          <div class="gallery-item-title">明らめた日の夜空</div>
         </div>
         <!-- 旧Gallery 5枚目 -->
         <div class="gallery-item">
           <div class="gallery-thumb-wrap">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhtfoYV6lWQm-Ih1huEi_Z1yxPbF_4D013_eK__K9moPUtHNtrx8w3WWxwI0PkjTKOernC5E2Ow3KVqW6ODD1noCl49AI5zjkefel1JlKTGOSG8pbCErN2U8mKHKABrIKMHgrZosMHX1u2lw7gk46OMceZ3NdRaT5VACxPoCDHfVVk6RIUQyzVAxtlsDGBV" alt="赤は進め" class="gallery-img">
+            <div class="gallery-item-title">赤は進め</div>
           </div>
-          <div class="gallery-item-title">赤は進め</div>
         </div>
         <!-- 旧Gallery 6枚目 -->
         <div class="gallery-item">
           <div class="gallery-thumb-wrap">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiHDSKIBCErvHGIRDK-5fakWykmT9QNb40sVAMWyKsLqsCKXx5zBdD0i6mhERZ7EgXXRdsisBV6sFaxhH6vcF8mtgHVyF5ojJyph751P4z5eGPmM_3l62ys-ZwxmeBb3BC0zNxSxVSKyuBu39tJrveQoqGH9tI1o65hr4vR58RhnPIci1qDz7tW-L04KyGH" alt="どばーっ" class="gallery-img">
+            <div class="gallery-item-title">どばーっ</div>
           </div>
-          <div class="gallery-item-title">どばーっ</div>
         </div>
         <!-- 旧Gallery 7枚目 -->
         <div class="gallery-item">
           <div class="gallery-thumb-wrap">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEigg9he2kSmzAjqdZO4eXnsYlhGh1BG5z5UsXyTm2FPklNSrMTAnW56QWCrTh7NsVGUy_yF4d1C3xbae9IcablYO6KPQYrUqpmnPMeId0H9DvaXPNS-60rELRoikcn1BYvhtYmZcSAEdsuuTPClFkUo77t7qohpda7_ySDatGKWxhKTAtM-fuuGQdedmf8Z" alt="45°のやすらぎ" class="gallery-img">
+            <div class="gallery-item-title">45°のやすらぎ</div>
           </div>
-          <div class="gallery-item-title">45°のやすらぎ</div>
         </div>
         <!-- 旧Gallery 8枚目 -->
         <div class="gallery-item">
           <div class="gallery-thumb-wrap">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgQOgBm2zgILyS5FnJhf1GwuhrqKGyMU7HFmV6F4y8ZcuJDqqLuAv7pKB1YcruSKRxwAIvltQwoghT4rG-3BTIbwoFvxI1iWiiM8t4OT6FQOV8hlK3oEC9F3u5H_FXh9NWBtikjBfo9JpHcCR1hAElzdP07bk5Y6VSMSfkJqus6pOxSGYrmK5SfbfsDa7dM" alt="無条件の付加価値" class="gallery-img">
+            <div class="gallery-item-title">無条件の付加価値</div>
           </div>
-          <div class="gallery-item-title">無条件の付加価値</div>
         </div>
       </div>
       <a href="old-gallery.html" class="read-more-btn">Read More</a>
@@ -505,7 +521,7 @@
   <div>&copy; Yubico Tsumugine All Rights Reserved.</div>
 </footer>
 
-<!-- モーダル用要素（タイトル対応版） -->
+<!-- モーダル用要素 -->
 <div class="modal" id="imageModal">
   <button class="modal-close" id="modalClose">&times;</button>
   <img class="modal-content" id="modalImg" src="" alt="拡大画像">
