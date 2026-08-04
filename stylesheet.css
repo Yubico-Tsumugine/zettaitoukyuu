@@ -116,4 +116,17 @@ body {
     padding-top: 0;
     padding-bottom: 2px;
   }
-}
+/* モバイル時のタイトルを1行に収める */
+  .section-title {
+    font-size: 1.3rem;
+  }
+  /* モバイル時だけ動画セクションの左右にゆとりを持たせる */
+  .video-section {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  /* モバイルでもギャラリーグリッドを4列（4x4）に固定する */
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+      }
+    }
