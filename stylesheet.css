@@ -595,12 +595,14 @@ body {
     padding: 5px 15px;
   }
 
-  .about-title {
-    font-size: 1.5rem;
-    margin-bottom: 45px;
-    letter-spacing: 0.1em;
+  /* モバイル時に子ページタイトルを小さくする */
+  .page-title {
+  font-size: 1.2rem;
+  margin-bottom: 45px;
+  letter-spacing: 0.1em;
   }
 
+   /* モバイル時にプロフィール全体を小さくする */
   .profile-img-wrap {
     width: 200px;
     height: 200px;
@@ -640,11 +642,11 @@ body {
 
 /* リンクページ全体のモバイル調整 */
   .link-main {
-    padding: 40px 15px 60px 15px;
+    padding: 40px 55px 60px 55px;
   }
 
   .link-intro {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     margin-bottom: 40px;
   }
 
@@ -671,17 +673,17 @@ body {
   }
 
   .link-item-title {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   .link-item-title-yururi {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 10px;
   }
 
   .link-desc-box {
-    font-size: 0.85rem;
-    padding: 15px 10px;
+    font-size: 0.75rem;
+    padding: 15px 20px;
     margin-top: 20px;
   }
 
