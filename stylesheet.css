@@ -1,6 +1,7 @@
 html {
   overflow-x: hidden;
 }
+
 @font-face {
   font-family: 'CineCaption';
   src: url('cinecaption226.ttf');
@@ -11,6 +12,7 @@ html {
   margin: 0;
   padding: 0;
 }
+
 body {
   background-color: #ffffff;
   color: #333333;
@@ -53,7 +55,7 @@ body {
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  background-color: rgba(128, 128, 128, 0.5); 
+  background-color: rgba(128, 128, 128, 0.5);
   backdrop-filter: blur(4px);
   padding: 17px 0;
   border-top: 1px solid #666;
@@ -75,6 +77,7 @@ body {
   padding-top: 2px;
   padding-bottom: 6px;
 }
+
 .page-title {
   font-size: 2rem;
   font-weight: 700;
@@ -119,7 +122,7 @@ body {
   aspect-ratio: 16 / 9;
   background: #000;
   border: 3px solid #333;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .video-wrapper iframe {
@@ -261,6 +264,7 @@ body {
   text-align: center;
   width: 100%;
   margin-top: clamp(20px, 3vw, 30px);
+  margin-bottom: clamp(40px, 6vw, 60px);
 }
 
 .read-more-btn {
@@ -307,7 +311,7 @@ body {
   max-height: 75vh;
   object-fit: contain;
   border-radius: 4px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .modal-title {
@@ -341,7 +345,7 @@ body {
 
 .about-title {
   margin-bottom: 45px;
-   letter-spacing: 0.1em;
+  letter-spacing: 0.1em;
 }
 
 .profile-img-wrap {
@@ -351,7 +355,7 @@ body {
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .profile-img-wrap img {
@@ -376,47 +380,47 @@ body {
   font-family: 'Zen Maru Gothic', sans-serif;
 }
 
-    /* コンタクトセクション */
-    .contact-section {
-      position: relative;
-      width: 100%;
-      background-image: url('https://github.com/Yubico-Tsumugine/image-storage/blob/main/mousou.png?raw=true');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 70px 20px 90px 20px;
-      box-sizing: border-box;
-      text-align: left;
-    }
+/* コンタクトセクション */
+.contact-section {
+  position: relative;
+  width: 100%;
+  background-image: url('https://github.com/Yubico-Tsumugine/image-storage/blob/main/mousou.png?raw=true');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 70px 20px 90px 20px;
+  box-sizing: border-box;
+  text-align: left;
+}
 
-    .contact-inner {
-      max-width: 650px;
-      margin: 0 auto;
-    }
+.contact-inner {
+  max-width: 650px;
+  margin: 0 auto;
+}
 
-    .contact-title {
-      font-size: 2rem;
-      font-weight: 600;
-      font-family: 'CineCaption', sans-serif;
-      color: #222;
-      margin-bottom: 45px;
-      letter-spacing: 0.1em;
-    }
+.contact-title {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: 'CineCaption', sans-serif;
+  color: #222;
+  margin-bottom: 45px;
+  letter-spacing: 0.1em;
+}
 
-    .contact-box {
-      background: #ffffff;
-      padding: 45px 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
+.contact-box {
+  background: #ffffff;
+  padding: 45px 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
 
-    .contact-box p {
-      font-size: 1rem;
-      color: #444;
-      margin-bottom: 25px;
-      font-family: 'Zen Maru Gothic', sans-serif;
-      line-height: 1.9;
-      text-align: justify;
-    }
+.contact-box p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 25px;
+  font-family: 'Zen Maru Gothic', sans-serif;
+  line-height: 1.9;
+  text-align: justify;
+}
 
 
 
@@ -438,38 +442,45 @@ body {
   margin-bottom: 8px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .site-header {
     height: 150px;
   }
+
   .header-logo-img {
     width: 130px;
     margin-bottom: 30px;
   }
+
   .nav-menu {
     padding: 8px 0;
   }
+
   .nav-menu a {
     margin: 0 10px;
     font-size: 0.95rem;
     padding-top: 0;
     padding-bottom: 2px;
   }
-/* モバイル時のタイトルを1行に収める */
+
+  /* モバイル時のタイトルを1行に収める */
   .section-title {
     font-size: 1rem;
   }
-/* モバイル時だけ動画セクションの左右にゆとりを持たせる */
+
+  /* モバイル時だけ動画セクションの左右にゆとりを持たせる */
   .video-section {
     padding-left: 50px;
     padding-right: 50px;
   }
-/* モバイル時だけギャラリー背景の左右にゆとりを持たせる */
+
+  /* モバイル時だけギャラリー背景の左右にゆとりを持たせる */
   .gallery-content-bg {
     padding-left: 50px;
     padding-right: 50px;
   }
-  .section-container-old-gallery-section{
+
+  .section-container-old-gallery-section {
     padding-left: 50px;
     padding-right: 50px;
   }
