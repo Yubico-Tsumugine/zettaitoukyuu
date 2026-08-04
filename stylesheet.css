@@ -8,7 +8,6 @@
   margin: 0;
   padding: 0;
 }
-
 body {
   background-color: #ffffff;
   color: #333333;
@@ -16,11 +15,11 @@ body {
   text-align: center;
 }
 
-/* ヘッダー */
+/* ヘッダーのスタイル */
 .site-header {
   position: relative;
   width: 100%;
-  height: clamp(100px, 20vw, 260px);
+  height: 400px;
   background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEjLg1CHZw7k2MukVCBMpRc9ArlFyaySkILcw4x0GnNPq4icQ3GRsAU4dPu1Ih4DIeKEDkGkepM-gogD6OUbqCAgr807lvXhz9kgCKWnmb7WY_KkhzuVuNttfJgq8u1g7C8dOMqacQO6dfawkmWiTDMwXiQA7bIE1iyR4fcHCEnCkJAg4S42QcRtDWsgqOSH');
   background-size: cover;
   background-position: center;
@@ -37,109 +36,71 @@ body {
 }
 
 .header-logo-img {
-  width: clamp(180px, 32vw, 380px);
-  max-width: 80%;
+  width: 440px;
+  max-width: 85%;
   height: auto;
   display: block;
 }
 
-/* ナビメニュー */
 .nav-menu {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  background-color: rgba(128, 128, 128, 0.6); 
+  background-color: rgba(128, 128, 128, 0.5); 
   backdrop-filter: blur(4px);
-  padding: 2px 0;
+  padding: 17px 0;
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: nowrap;
-  overflow-x: auto;
 }
 
 .nav-menu a {
   display: inline-block;
   color: #ffffff;
   text-decoration: none;
-  margin: 2px 8px;
-  font-size: clamp(0.7rem, 1vw, 0.95rem);
+  margin: 0 20px;
+  font-size: 1.3rem;
   font-weight: 500;
   font-family: 'CineCaption', sans-serif;
   letter-spacing: 0.05em;
-  white-space: nowrap;
+  padding-top: 2px;
+  padding-bottom: 6px;
 }
-
-/* メインコンテンツ・共通コンテナ */
-.main-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-/* セクションタイトル */
 .page-title {
-  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-size: 2rem;
   font-weight: 700;
   font-family: 'CineCaption', sans-serif;
-  margin: 30px 0 15px;
+  margin-bottom: 45px;
   letter-spacing: 0.1em;
 }
 
-/* ギャラリーグリッド（4列固定） */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.gallery-grid img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-/* もっと見るボタン */
-.read-more-container {
-  margin: 20px 0 40px;
-  text-align: center;
-}
-
-.read-more-btn {
-  display: inline-block;
-  padding: 8px 24px;
-  border: 1px solid #cccccc;
-  background-color: #ffffff;
-  color: #555555;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-family: 'Zen Maru Gothic', sans-serif;
-  border-radius: 4px;
-}
-
-/* フッダー */
+/* フッダーのスタイル */
 .footer-container {
   width: 100%;
   background-color: #111111;
   color: #888888;
-  padding: 20px 15px;
-  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
-  line-height: 1.6;
+  padding: 35px 20px;
+  font-size: 0.9rem;
+  line-height: 1.8;
   border-top: 1px solid #222222;
   text-align: center;
-  margin-top: 40px;
 }
 
 .footer-credit {
   color: #cccccc;
-  font-size: clamp(0.75rem, 1vw, 0.85rem);
-  margin-bottom: 4px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    height: 150px;
+  }
+  .header-logo-img {
+    width: 240px;
+  }
 }
