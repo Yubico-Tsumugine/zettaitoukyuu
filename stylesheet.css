@@ -442,7 +442,7 @@ body {
   margin-bottom: 8px;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 800px) {
   .site-header {
     height: 150px;
   }
