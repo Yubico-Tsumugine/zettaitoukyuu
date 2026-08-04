@@ -334,6 +334,13 @@ body {
   line-height: 1;
 }
 
+/* 子ページタイトル */
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 45px;
+  letter-spacing: 0.1em;
+  font-family: 'CineCaption', sans-serif;
+}
 
 /* メインコンテンツ（プロフィール部分） */
 .about-main {
@@ -341,11 +348,6 @@ body {
   padding: 70px 20px 50px 20px;
   max-width: 650px;
   margin: 0 auto;
-}
-
-.about-title {
-  margin-bottom: 45px;
-  letter-spacing: 0.1em;
 }
 
 .profile-img-wrap {
