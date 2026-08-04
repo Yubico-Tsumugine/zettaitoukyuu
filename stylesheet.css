@@ -511,4 +511,22 @@ body {
     font-size: 0.65rem;
     padding: 5px 15px;
   }
+
+  .profile-img-wrap {
+  width: 200px;
+  height: 200px;
+  }
+
+  .profile-name {
+  font-size: 1rem;
+  }
+
+  .about-main {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .profile-text {
+  font-size: 0.95rem;
+｝
 }
