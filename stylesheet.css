@@ -476,15 +476,15 @@ body {
 
   /* モバイル時にサブタイトルをメインタイトルより小さくする */
   .gallery-info-area h3{
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 
   .gallery-grid-title {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 
   .gallery-info-area{
-    font-size: 0.70rem;
+    font-size: 0.60rem;
   }
 
   .gallery-subnote{
