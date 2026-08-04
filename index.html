@@ -15,14 +15,14 @@
    <style>
     .section-container {
       width: 100%;
-      padding: 60px 20px;
+      padding: clamp(30px, 4vw, 60px) clamp(10px, 2vw, 20px);
       background-size: cover;
       background-position: center;
     }
 
     .section-title {
-      font-size: 2rem;
-      margin-bottom: 30px;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      margin-bottom: clamp(20px, 3vw, 30px);
       letter-spacing: 0.1em;
       font-family: 'CineCaption', sans-serif;
       color: #000000;
@@ -34,7 +34,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      padding: 60px 20px 90px 20px;
+      padding: clamp(30px, 4vw, 60px) clamp(10px, 2vw, 20px) clamp(45px, 6vw, 90px) clamp(10px, 2vw, 20px);
       box-sizing: border-box;
     }
 
@@ -68,7 +68,7 @@
       background-position: center;
       background-repeat: no-repeat;
       width: 100%;
-      padding: 50px 20px;
+      padding: clamp(30px, 4vw, 50px) clamp(10px, 2vw, 20px);
       box-sizing: border-box;
     }
 
@@ -77,13 +77,13 @@
       margin: 0 auto 15px auto;
       text-align: left;
       color: #000000;
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 1.2vw, 0.95rem);
       font-family: 'DotGothic16', sans-serif;
       line-height: 1.7;
     }
 
     .gallery-info-area h3 {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
       font-weight: bold;
       margin-top: 15px;
       margin-bottom: 8px;
@@ -107,7 +107,7 @@
     }
 
     .gallery-subnote {
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 1.1vw, 0.85rem);
       color: #555555;
       margin-top: 0px;
       margin-bottom: 20px;
@@ -118,7 +118,7 @@
       margin: 0 auto 12px auto;
       text-align: left;
       color: #000000;
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
       font-family: 'DotGothic16', sans-serif;
     }
 
@@ -127,7 +127,7 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px 15px;
+      gap: clamp(10px, 2vw, 20px) clamp(10px, 1.5vw, 15px);
     }
 
     .gallery-item {
@@ -136,12 +136,11 @@
       align-items: center;
     }
 
-    /* ホバー演出用の相対位置と背景設定 */
     .gallery-thumb-wrap {
       position: relative;
       width: 100%;
       aspect-ratio: 1 / 1;
-      background-color: #ffffff; /* ホバー時に薄くなったときの背景色 */
+      background-color: #ffffff;
       border: 1px solid #ccc;
       overflow: hidden;
       cursor: pointer;
@@ -156,26 +155,21 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    /* マウスオーバー時に画像を薄くする */
     .gallery-thumb-wrap:hover img {
       opacity: 0.35;
       transform: scale(1.03);
     }
 
-    /* オーバーレイするタイトル */
     .gallery-item-title {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 90%;
-      font-size: 0.95rem;
+      font-size: clamp(0.8rem, 1.2vw, 0.95rem);
       font-family: 'Zen Maru Gothic', sans-serif;
       font-weight: 700;
       color: #222222;
-      /* background: rgba(255, 255, 255, 0.85); ←ここを消す */
-      /* padding: 6px 8px; ←ここも消すか調整する */
-      /* border-radius: 4px; ←ここも消す */
       text-align: center;
       letter-spacing: 0.05em;
       opacity: 0;
@@ -185,10 +179,9 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      text-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.9); /* 文字が読みやすいように周りに白い光彩を入れるとスッキリするよ */
+      text-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.9);
     }
 
-    /* マウスオーバー時にタイトルをふんわり浮かび上がらせる */
     .gallery-thumb-wrap:hover .gallery-item-title {
       opacity: 1;
     }
@@ -197,18 +190,25 @@
       background-color: #ffffff;
     }
 
+    /* ボタンを中央配置し、太字やアンダーバーを確実に打ち消す */
+    .read-more-wrapper {
+      text-align: center;
+      width: 100%;
+      margin-top: clamp(20px, 3vw, 30px);
+    }
+
     .read-more-btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 10px 32px;
+      padding: clamp(8px, 1.2vw, 10px) clamp(24px, 3vw, 32px);
       background: #ffffff;
       border: 1px solid #cccccc;
       border-radius: 8px;
       color: #808080;
-      text-decoration: none;
-      font-size: 0.95rem;
+      text-decoration: none !important;
+      font-size: clamp(0.85rem, 1.2vw, 0.95rem);
       cursor: pointer;
       font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500 !important;
     }
 
     .read-more-btn:hover {
@@ -231,7 +231,6 @@
       margin-bottom: 8px;
     }
 
-    /* モーダル全体のデザイン */
     .modal {
       display: none;
       position: fixed;
@@ -322,9 +321,6 @@
       <div style="background-color: #ffffff; padding: 40px 0; box-sizing: border-box; width: 100%; display: flex; justify-content: center; align-items: center;">
         <h2 class="section-title" style="margin: 0;">Gallery</h2>
       </div>
-
-      <div class="gallery-content-bg">
-        <div class="gallery-info-area">
 
       <div class="gallery-content-bg">
         <div class="gallery-info-area">
@@ -452,7 +448,9 @@
             </div>
           </div>
         </div>
-        <a href="Gallery.html" class="read-more-btn">Read More</a>
+        <div class="read-more-wrapper">
+          <a href="Gallery.html" class="read-more-btn">Read More</a>
+        </div>
       </div>
     </section>
 
@@ -516,7 +514,9 @@
           </div>
         </div>
       </div>
-      <a href="old-gallery.html" class="read-more-btn">Read More</a>
+      <div class="read-more-wrapper">
+        <a href="old-gallery.html" class="read-more-btn">Read More</a>
+      </div>
     </section>
   </div>
 </main>
@@ -526,7 +526,6 @@
   <div>&copy; Yubico Tsumugine All Rights Reserved.</div>
 </footer>
 
-<!-- モーダル用要素 -->
 <div class="modal" id="imageModal">
   <button class="modal-close" id="modalClose">&times;</button>
   <img class="modal-content" id="modalImg" src="" alt="拡大画像">
@@ -534,7 +533,6 @@
 </div>
 
 <script>
-  // クリックでタイトル付きのモーダルを開く仕組み
   const modal = document.getElementById('imageModal');
   const modalImg = document.getElementById('modalImg');
   const modalTitle = document.getElementById('modalTitle');
@@ -555,15 +553,10 @@
     }
   });
 
-  // 閉じるボタンか背景クリックで閉じる
-  modalClose.addEventListener('click', () => {
-    modal.classList.remove('is-active');
-  });
-
+  const closeModal = () => modal.classList.remove('is-active');
+  modalClose.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('is-active');
-    }
+    if (e.target === modal) closeModal();
   });
 </script>
 </body>
