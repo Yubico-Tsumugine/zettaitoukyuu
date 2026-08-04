@@ -506,4 +506,9 @@ body {
   .gallery-grid {
     grid-template-columns: repeat(4, 1fr);
   }
+  /* モバイル時にRead Moreボタンを小さくする */
+  .read-more-btn {
+    font-size: 0.75rem;
+    padding: 6px 20px;
+  }
 }
