@@ -469,10 +469,13 @@ body {
     padding-left: 50px;
     padding-right: 50px;
   }
-
+  .section-container-old-gallery-section{
+    padding-left: 50px;
+    padding-right: 50px;
+  }
 
   /* モバイルでもギャラリーグリッドを4列（4x4）に固定する */
   .gallery-grid {
     grid-template-columns: repeat(4, 1fr);
-      }
-    }
+  }
+}
