@@ -508,7 +508,7 @@ body {
   }
   /* モバイル時にRead Moreボタンを小さくする */
   .read-more-btn {
-    font-size: 0.55rem;
-    padding: 3px 10px;
+    font-size: 0.65rem;
+    padding: 5px 15px;
   }
 }
