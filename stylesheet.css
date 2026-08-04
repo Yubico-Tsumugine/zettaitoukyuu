@@ -101,10 +101,10 @@ body {
 
 @media (max-width: 768px) {
   .site-header {
-    height: 220px;
+    height: 150px;
   }
   .header-logo-img {
-    width: 200px;
+    width: 130px;
     margin-bottom: 30px;
   }
   .nav-menu {
@@ -118,12 +118,12 @@ body {
   }
 /* モバイル時のタイトルを1行に収める */
   .section-title {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   /* モバイル時だけ動画セクションの左右にゆとりを持たせる */
   .video-section {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
   /* モバイルでもギャラリーグリッドを4列（4x4）に固定する */
   .gallery-grid {
