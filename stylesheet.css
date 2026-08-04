@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   background-color: #ffffff;
   color: #333333;
@@ -19,7 +20,7 @@ body {
 .site-header {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: clamp(150px, 30vw, 400px);
   background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEjLg1CHZw7k2MukVCBMpRc9ArlFyaySkILcw4x0GnNPq4icQ3GRsAU4dPu1Ih4DIeKEDkGkepM-gogD6OUbqCAgr807lvXhz9kgCKWnmb7WY_KkhzuVuNttfJgq8u1g7C8dOMqacQO6dfawkmWiTDMwXiQA7bIE1iyR4fcHCEnCkJAg4S42QcRtDWsgqOSH');
   background-size: cover;
   background-position: center;
@@ -36,7 +37,7 @@ body {
 }
 
 .header-logo-img {
-  width: 440px;
+  width: clamp(240px, 40vw, 440px);
   max-width: 85%;
   height: auto;
   display: block;
@@ -50,31 +51,33 @@ body {
   box-sizing: border-box;
   background-color: rgba(128, 128, 128, 0.5); 
   backdrop-filter: blur(4px);
-  padding: 17px 0;
+  padding: clamp(10px, 1.5vw, 17px) 0;
   border-top: 1px solid #666;
   border-bottom: 1px solid #666;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-menu a {
   display: inline-block;
   color: #ffffff;
   text-decoration: none;
-  margin: 0 20px;
-  font-size: 1.3rem;
+  margin: clamp(4px, 1vw, 20px);
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
   font-weight: 500;
   font-family: 'CineCaption', sans-serif;
   letter-spacing: 0.05em;
   padding-top: 2px;
   padding-bottom: 6px;
 }
+
 .page-title {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 700;
   font-family: 'CineCaption', sans-serif;
-  margin-bottom: 45px;
+  margin-bottom: clamp(25px, 4vw, 45px);
   letter-spacing: 0.1em;
 }
 
@@ -83,8 +86,8 @@ body {
   width: 100%;
   background-color: #111111;
   color: #888888;
-  padding: 35px 20px;
-  font-size: 0.9rem;
+  padding: clamp(25px, 3vw, 35px) 20px;
+  font-size: clamp(0.8rem, 1.1vw, 0.9rem);
   line-height: 1.8;
   border-top: 1px solid #222222;
   text-align: center;
@@ -92,15 +95,6 @@ body {
 
 .footer-credit {
   color: #cccccc;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
   margin-bottom: 8px;
-}
-
-@media (max-width: 768px) {
-  .site-header {
-    height: 150px;
-  }
-  .header-logo-img {
-    width: 240px;
-  }
 }
