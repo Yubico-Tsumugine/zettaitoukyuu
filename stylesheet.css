@@ -636,8 +636,51 @@ body {
     margin-bottom: 20px;
   }
 
+/* リンクページ全体のモバイル調整 */
+  .link-main {
+    padding: 40px 15px 60px 15px;
+  }
+
+  .link-intro {
+    font-size: 0.85rem;
+    margin-bottom: 40px;
+  }
+
+  .link-hr {
+    margin: 40px 0;
+  }
+
+  .link-item {
+    margin-bottom: 25px;
+  }
+
+  /* スマホではみ出さないようにバナー幅を縮小 */
+  .banner-top {
+    width: 90px;
+  }
+
   .banner-mid {
     width: 100%;
-    max-width: 300px; /* スマホで見やすい大きさに調整 */
+    max-width: 280px;
   }
+
+  .banner-btm {
+    width: 160px;
+  }
+
+  .link-item-title {
+    font-size: 1.3rem;
+  }
+
+  .link-item-title-yururi {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .link-desc-box {
+    font-size: 0.85rem;
+    padding: 15px 10px;
+    margin-top: 20px;
+  }
+
 }
