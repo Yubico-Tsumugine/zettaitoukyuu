@@ -468,6 +468,11 @@ body {
     font-size: 1rem;
   }
 
+  /* モバイル時にサブタイトルをメインタイトルより小さくする */
+  .gallery-grid-title {
+    font-size: 0.85rem;
+  }
+
   /* モバイル時だけ動画セクションの左右にゆとりを持たせる */
   .video-section {
     padding-left: 50px;
