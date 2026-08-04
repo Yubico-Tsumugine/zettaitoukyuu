@@ -468,15 +468,27 @@ body {
     font-size: 1rem;
   }
 
-  /* モバイル時にサブタイトルをメインタイトルより小さくする */
-  .gallery-grid-title {
-    font-size: 0.85rem;
-  }
-
   /* モバイル時だけ動画セクションの左右にゆとりを持たせる */
   .video-section {
     padding-left: 50px;
     padding-right: 50px;
+  }
+
+  /* モバイル時にサブタイトルをメインタイトルより小さくする */
+  .gallery-info-area h3{
+    font-size: 0.85rem;
+  }
+
+  .gallery-grid-title {
+    font-size: 0.85rem;
+  }
+
+  .gallery-info-area{
+    font-size: 0.70rem;
+  }
+
+  .gallery-subnote{
+    font-size: 0.55rem;
   }
 
   /* モバイル時だけギャラリー背景の左右にゆとりを持たせる */
