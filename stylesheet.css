@@ -156,15 +156,12 @@ body {
 
 .gallery-info-area {
   max-width: 800px;
-  width: 100%;
   margin: 0 auto 15px auto;
-  padding: 0 clamp(0px, 2vw, 20px);
   text-align: left;
   color: #000000;
   font-size: 0.9rem;
   font-family: 'DotGothic16', sans-serif;
   line-height: 1.7;
-  box-sizing: border-box;
 }
 
 .gallery-info-area h3 {
@@ -198,19 +195,19 @@ body {
   margin-bottom: 20px;
 }
 
-/* ホーム上ギャラリー独立設定 */
+/* ホーム上ギャラリー独立設定*/
 .gallery-main {
   width: 100%;
-  padding: 10px clamp(0px, 2vw, 20px) 120px clamp(0px, 2vw, 20px);
+  padding: 10px 0px 120px 0px;
   max-width: 800px;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* ホーム旧ギャラリー独立設定 */
+/* ホーム旧ギャラリー独立設定*/
 .old-gallery-main {
   width: 100%;
-  padding: 10px clamp(0px, 2vw, 20px) 120px clamp(0px, 2vw, 20px);
+  padding: 10px 0px 120px 0px;
   max-width: 800px;
   margin: 0 auto;
   box-sizing: border-box;
