@@ -260,11 +260,13 @@
 </div>
 
 <script>
-  const modal = document.getElementById('imageModal');
+const modal = document.getElementById('imageModal');
   const modalImg = document.getElementById('modalImg');
   const modalTitle = document.getElementById('modalTitle');
   const modalClose = document.getElementById('modalClose');
   const galleryItems = document.querySelectorAll('.gallery-item');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
 
   galleryItems.forEach(item => {
     const thumbWrap = item.querySelector('.gallery-thumb-wrap');
@@ -285,6 +287,20 @@
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
   });
+
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('is-active');
+      navMenu.classList.toggle('is-open');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('is-active');
+        navMenu.classList.remove('is-open');
+      });
+    });
+  }
 </script>
 <a href="#" class="to-top-btn" aria-label="トップへ戻る"></a>
 </body>
