@@ -197,7 +197,8 @@ body {
 
 .gallery-main {
   width: 100%;
-  padding: 10px 20px 120px 20px; /* ここの最後の値を 120px くらいに大きくする */
+  padding: 10px 20px 120px 20px;
+  /* ここの最後の値を 120px くらいに大きくする */
   max-width: 840px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -538,7 +539,7 @@ body {
 }
 
 /* --- スマホ表示（メディアクエリ内） --- */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .site-header {
     height: 240px;
     position: relative;
@@ -655,7 +656,7 @@ body {
     padding-bottom: 10px;
   }
 
-/* モバイル時の全体的なサイズ調整 */
+  /* モバイル時の全体的なサイズ調整 */
   .section-title {
     font-size: 1.4rem;
   }
@@ -764,13 +765,15 @@ body {
   }
 
   /* スマホ用のギャラリーメイン・グリッド設定をここに統合 */
-.gallery-main {
+  .gallery-main {
     width: 100%;
-    padding: 10px 15px 80px 15px; /* ここの最後の値を 50px から 80px くらいに増やす */
+    padding: 10px 15px 80px 15px;
+    /* ここの最後の値を 50px から 80px くらいに増やす */
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
   }
+
   .gallery-grid {
     width: 100%;
     max-width: 100%;
@@ -779,15 +782,22 @@ body {
     box-sizing: border-box;
   }
 }
+
 /* --- 旧ギャラリーセクションの余白調整 --- */
 .old-gallery-section .gallery-main {
   padding-bottom: 20px;
 }
+
 .old-gallery-section .read-more-wrapper {
   margin-top: 10px;
 }
-@media (max-width: 768px) {
+
+@media (max-width: 767px) {
   .old-gallery-section .gallery-main {
     padding-bottom: 20px !important;
+  }
+
+  .gallery-content-bg .read-more-wrapper {
+    margin-bottom: 20px !important;
   }
 }
