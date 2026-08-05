@@ -195,19 +195,19 @@ body {
   margin-bottom: 20px;
 }
 
-/* ホーム上ギャラリー独立設定*/
+/* ホーム上ギャラリー独立設定 */
 .gallery-main {
   width: 100%;
-  padding: 10px 0px 120px 0px;
+  padding: 10px clamp(0px, 2vw, 20px) 120px clamp(0px, 2vw, 20px);
   max-width: 800px;
   margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* ホーム旧ギャラリー独立設定*/
+/* ホーム旧ギャラリー独立設定 */
 .old-gallery-main {
   width: 100%;
-  padding: 10px 0px 120px 0px;
+  padding: 10px clamp(0px, 2vw, 20px) 120px clamp(0px, 2vw, 20px);
   max-width: 800px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -216,7 +216,7 @@ body {
 /* 子ギャラリー（新・旧）独立設定*/
 .sub-gallery-main {
   width: 100%;
-  padding: 50px 32px 120px 32px;
+  padding: 50px clamp(16px, 4vw, 32px) 120px clamp(16px, 4vw, 32px);
   max-width: 800px;
   margin: 0 auto;
   box-sizing: border-box;
