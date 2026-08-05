@@ -779,3 +779,7 @@ body {
     box-sizing: border-box;
   }
 }
+/* --- 旧ギャラリーセクションの余白調整 --- */
+.old-gallery-section .gallery-main {
+  padding-bottom: 20px;
+}
