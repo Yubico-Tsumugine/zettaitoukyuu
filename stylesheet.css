@@ -778,8 +778,4 @@ body {
     gap: 6px;
     box-sizing: border-box;
   }
-  /* イラスト個別ページ用 */
-body > main .gallery-main {
-  padding-bottom: 30px;
-}
 }
