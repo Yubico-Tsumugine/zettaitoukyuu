@@ -197,7 +197,7 @@ body {
 
 .gallery-main {
   width: 100%;
-  padding: 70px 20px 90px 20px; /* ここの最後の 90px が下の余白になる */
+  padding: 70px 20px 120px 20px; /* ここの最後の値を 120px くらいに大きくする */
   max-width: 840px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -764,14 +764,13 @@ body {
   }
 
   /* スマホ用のギャラリーメイン・グリッド設定をここに統合 */
-  .gallery-main {
+.gallery-main {
     width: 100%;
-    padding: 40px 15px 50px 15px;
+    padding: 40px 15px 80px 15px; /* ここの最後の値を 50px から 80px くらいに増やす */
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
   }
-
   .gallery-grid {
     width: 100%;
     max-width: 100%;
