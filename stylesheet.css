@@ -195,6 +195,7 @@ body {
   margin-bottom: 20px;
 }
 
+/* ホーム上ギャラリー独立設定*/
 .gallery-main {
   width: 100%;
   padding: 10px 0px 120px 0px;
@@ -203,8 +204,17 @@ body {
   box-sizing: border-box;
 }
 
-/* 旧ギャラリー独立設定*/
+/* ホーム旧ギャラリー独立設定*/
 .old-gallery-main {
+  width: 100%;
+  padding: 10px 0px 120px 0px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* 子ギャラリー（新・旧）独立設定*/
+.sub-gallery-main {
   width: 100%;
   padding: 10px 0px 120px 0px;
   max-width: 800px;
@@ -705,14 +715,7 @@ body {
     margin: 0 auto;
     box-sizing: border-box;
   }
-/* --- ホーム上ギャラリー、子（新・旧）ギャラリーエリア用 --- */
-  .gallery-grid {
-    width: 100%;
-    max-width: 100%;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    box-sizing: border-box;
-  }
+
 /* --- 子（新・旧）ギャラリーエリア両端空白用 --- */
   .sub-gallery-main {
     width: 100%;
@@ -721,6 +724,16 @@ body {
     margin: 0 auto;
     box-sizing: border-box;
   }
+
+/* --- ホーム上ギャラリー、子（新・旧）ギャラリーエリア用 --- */
+  .gallery-grid {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    box-sizing: border-box;
+  }
+
   .read-more-btn {
     font-size: 0.9rem;
     padding: 10px 24px;
