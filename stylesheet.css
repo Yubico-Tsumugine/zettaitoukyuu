@@ -640,7 +640,7 @@ body {
     padding-bottom: 10px;
   }
 
-  /* モバイル時の全体的なサイズ調整 */
+  /* モバイル時の全体的なサイズ調整（グリッドは4列を維持しつつ、左右の隙間を確保） */
   .section-title {
     font-size: 1.4rem;
   }
@@ -671,9 +671,17 @@ body {
     padding-right: 20px;
   }
 
+  /* old-galleryなどのセクションも含めて両端に隙間を持たせる */
+  .old-gallery-section {
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+
+  /* ギャラリーグリッドは4列を維持 */
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(6px, 1.5vw, 12px);
   }
 
   .read-more-btn {
