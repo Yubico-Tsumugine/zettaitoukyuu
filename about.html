@@ -23,9 +23,15 @@
   <nav class="nav-menu">
     <a href="index.html">Gallery</a>
     <a href="about.html">About</a>
-    <a href="https://yubicodraw.fanbox.cc/" target="_blank" rel="noopener noreferrer">Words</a>
+    <a href="https://zettaitoukyu.blogspot.com/" target="_blank" rel="noopener noreferrer">Words</a>
     <a href="link.html">Link</a>
   </nav>
+   <!-- このボタンをヘッダーの中に追加する -->
+  <button class="menu-toggle" aria-label="メニューを開閉">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
 <main>
@@ -61,6 +67,24 @@
   <div class="footer-credit">Absolute Magnitude</div>
   <div>&copy; Yubico Tsumugine All Rights Reserved.</div>
 </footer>
+
+<script>
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('is-active');
+      navMenu.classList.toggle('is-open');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('is-active');
+        navMenu.classList.remove('is-open');
+      });
+    });
+  }
+</script>
+
+<a href="#" class="to-top-btn" aria-label="トップへ戻る"></a>
 
 </body>
 </html>
