@@ -233,7 +233,7 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(6px, 1.5vw, 15px) clamp(6px, 1.2vw, 12px);
+  gap: 10px 10px; /* ここを固定のpxにする */
 }
 
 .gallery-item {
