@@ -764,11 +764,10 @@ body {
     font-size: 0.9rem;
   }
 
-  /* スマホ用のギャラリーメイン・グリッド設定をここに統合 */
+/* スマホ用のギャラリーメイン・グリッド設定 */
   .gallery-main {
     width: 100%;
     padding: 10px 15px 80px 15px;
-    /* ここの最後の値を 50px から 80px くらいに増やす */
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
@@ -783,14 +782,27 @@ body {
   }
 }
 
-/* --- 旧ギャラリーセクションの余白調整 --- */
+/* --- 旧ギャラリーセクション専用の調整 --- */
 .old-gallery-section {
+  background-color: #ffffff;
   padding-bottom: 20px;
+}
+
+/* トップページのインデックスにある旧ギャラリー専用のメイン枠 */
+.old-gallery-main {
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 10px 20px 40px 20px;
 }
 
 @media (max-width: 767px) {
   .old-gallery-section {
     padding-bottom: 10px !important;
+  }
+  .old-gallery-main {
+    padding: 10px 15px 30px 15px !important;
   }
   .old-gallery-section .read-more-wrapper {
     margin-top: 5px !important;
