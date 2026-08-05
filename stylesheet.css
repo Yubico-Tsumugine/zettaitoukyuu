@@ -204,6 +204,21 @@ body {
   box-sizing: border-box;
 }
 
+/* 旧ギャラリー独立設定*/
+.old-gallery-main {
+  width: 100%;
+  padding: 10px 20px 120px 20px;
+  /* ここの最後の値を 120px くらいに大きくする */
+  max-width: 840px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.old-gallery-section {
+  background-color: #ffffff;
+}
+
+
 .gallery-grid-title {
   max-width: 800px;
   margin: 0 auto 12px auto;
@@ -276,11 +291,6 @@ body {
 
 .gallery-thumb-wrap:hover .gallery-item-title {
   opacity: 1;
-}
-
-.old-gallery-section {
-  background-color: #ffffff;
-  padding: clamp(40px, 6vw, 80px) clamp(20px, 4vw, 40px);
 }
 
 .read-more-wrapper {
@@ -781,28 +791,12 @@ body {
     gap: 6px;
     box-sizing: border-box;
   }
-}
 
-/* --- 旧ギャラリーセクションの独立・隙間調整 --- */
-.old-gallery-main {
-  width: 100%;
-  max-width: 840px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 10px 20px;
-}
-
-.old-gallery-main .read-more-wrapper {
-  margin-top: 15px;
-  margin-bottom: 10px;
-}
-
-@media (max-width: 767px) {
   .old-gallery-main {
-    padding: 5px 15px;
-  }
-  .old-gallery-main .read-more-wrapper {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    width: 100%;
+    padding: 10px 15px 80px 15px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 }
