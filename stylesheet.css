@@ -695,14 +695,13 @@ body {
     padding: 10px 24px;
   }
 
-  .gallery-main {
-    width: 100%;
-    padding: 50px 20px 70px 20px;
-    max-width: 840px;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-
+.gallery-main {
+  width: 100%;
+  padding: 70px 20px 50px 20px;
+  max-width: 840px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
   .page-title {
     font-size: 1.5rem;
     margin-bottom: 30px;
@@ -773,5 +772,21 @@ body {
 
   .link-desc-box {
     font-size: 0.9rem;
+  }
+
+  .gallery-main {
+    width: 100%;
+    padding: 40px 15px 50px 15px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .gallery-grid {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    box-sizing: border-box;
   }
 }
