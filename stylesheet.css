@@ -797,7 +797,7 @@ body {
     padding-bottom: 20px !important;
   }
 
-  .gallery-content-bg .read-more-wrapper {
-    margin-bottom: 10px !important;
-  }
+.old-gallery-section .read-more-wrapper {
+  margin-top: 10px;
+}
 }
