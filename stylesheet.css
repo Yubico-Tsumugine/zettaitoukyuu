@@ -195,6 +195,14 @@ body {
   margin-bottom: 20px;
 }
 
+.gallery-main {
+  width: 100%;
+  padding: 70px 20px 90px 20px; /* ここの最後の 90px が下の余白になる */
+  max-width: 840px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 .gallery-grid-title {
   max-width: 800px;
   margin: 0 auto 12px auto;
