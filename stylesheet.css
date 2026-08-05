@@ -203,6 +203,11 @@ body {
   box-sizing: border-box;
 }
 
+/* イラスト個別ページ用 */
+body > main .gallery-main {
+  padding-bottom: 30px;
+}
+
 .gallery-grid-title {
   max-width: 800px;
   margin: 0 auto 12px auto;
