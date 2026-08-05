@@ -197,7 +197,7 @@ body {
 
 .gallery-main {
   width: 100%;
-  padding: 10px 20px 120px 20px;
+  padding: 10px 20px 120px 20px; /* ここの最後の値を 120px くらいに大きくする */
   max-width: 840px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -235,6 +235,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   border-radius: 0;
+  /* 角を丸めない */
 }
 
 .gallery-thumb-wrap img {
@@ -331,6 +332,7 @@ body {
   max-height: 75vh;
   object-fit: contain;
   border-radius: 0;
+  /* 拡大画像も角を丸めない */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -547,6 +549,7 @@ body {
     margin-bottom: 10px;
   }
 
+  /* ハンバーガーボタンをヘッダー画像内の右下に配置 */
   .menu-toggle {
     display: flex;
     position: absolute;
@@ -587,6 +590,7 @@ body {
     transform: translateY(-8.5px) rotate(-45deg);
   }
 
+  /* トップへ戻るボタンを表示 */
   .to-top-btn {
     display: flex;
     position: fixed;
@@ -615,6 +619,7 @@ body {
     margin-top: 4px;
   }
 
+  /* モバイル時のナビゲーション（スライド展開） */
   .nav-menu {
     position: fixed;
     top: 0;
@@ -650,6 +655,7 @@ body {
     padding-bottom: 10px;
   }
 
+/* モバイル時の全体的なサイズ調整 */
   .section-title {
     font-size: 1.4rem;
   }
@@ -757,14 +763,14 @@ body {
     font-size: 0.9rem;
   }
 
-  .gallery-main {
+  /* スマホ用のギャラリーメイン・グリッド設定をここに統合 */
+.gallery-main {
     width: 100%;
-    padding: 10px 15px 80px 15px;
+    padding: 10px 15px 80px 15px; /* ここの最後の値を 50px から 80px くらいに増やす */
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
   }
-
   .gallery-grid {
     width: 100%;
     max-width: 100%;
@@ -772,9 +778,8 @@ body {
     gap: 6px;
     box-sizing: border-box;
   }
-}
-
-/* --- イラスト個別ページ用（余白修正） --- */
+  /* イラスト個別ページ用 */
 body > main .gallery-main {
   padding-bottom: 30px;
+}
 }
