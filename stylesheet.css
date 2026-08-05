@@ -786,3 +786,8 @@ body {
 .old-gallery-section .read-more-wrapper {
   margin-top: 10px;
 }
+@media (max-width: 768px) {
+  .old-gallery-section .gallery-main {
+    padding-bottom: 20px !important;
+  }
+}
