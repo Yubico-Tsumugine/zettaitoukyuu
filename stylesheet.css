@@ -697,6 +697,7 @@ body {
     box-sizing: border-box;
   }
 
+/* --- ホームの旧ギャラリーエリア用 --- */
   .old-gallery-main {
     width: 100%;
     padding: 10px 0px 80px 0px;
@@ -704,7 +705,7 @@ body {
     margin: 0 auto;
     box-sizing: border-box;
   }
-
+/* --- ホーム上ギャラリー、子（新・旧）ギャラリーエリア用 --- */
   .gallery-grid {
     width: 100%;
     max-width: 100%;
@@ -712,7 +713,14 @@ body {
     gap: 8px;
     box-sizing: border-box;
   }
-
+/* --- 子（新・旧）ギャラリーエリア両端空白用 --- */
+  .sub-gallery-main {
+    width: 100%;
+    padding: 10px 16px 80px 16px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
   .read-more-btn {
     font-size: 0.9rem;
     padding: 10px 24px;
