@@ -26,6 +26,12 @@
     <a href="https://yubicodraw.fanbox.cc/">Words</a>
     <a href="link.html">Link</a>
   </nav>
+     <!-- このボタンをヘッダーの中に追加する -->
+  <button class="menu-toggle" aria-label="メニューを開閉">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
 <main>
@@ -93,5 +99,24 @@
   <div>&copy; Yubico Tsumugine All Rights Reserved.</div>
 </footer>
 
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('is-active');
+      navMenu.classList.toggle('is-open');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('is-active');
+        navMenu.classList.remove('is-open');
+      });
+    });
+  }
+</script>
+<a href="#" class="to-top-btn" aria-label="トップへ戻る"></a>
 </body>
 </html>
