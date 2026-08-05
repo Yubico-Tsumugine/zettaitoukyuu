@@ -527,7 +527,7 @@ body {
 }
 
 /* --- スマホ表示（メディアクエリ内） --- */
-@media (max-width: 820px) {
+@media (max-width: 768px) {
   .site-header {
     height: 240px;
     position: relative;
@@ -539,42 +539,42 @@ body {
   }
 
   /* ハンバーガーボタンをヘッダー画像内の右下に配置 */
-  .menu-toggle {
+.menu-toggle {
     display: flex;
     position: absolute;
     bottom: 15px;
     right: 15px;
-    width: 45px;
-    height: 45px;
+    width: 54px;
+    height: 54px;
     background-color: rgba(90, 85, 75, 0.85);
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     padding: 0;
   }
 
   .menu-toggle span {
     display: block;
-    width: 22px;
-    height: 2px;
+    width: 26px;
+    height: 2.5px;
     background-color: #ffffff;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   .menu-toggle.is-active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(8.5px) rotate(45deg);
   }
   .menu-toggle.is-active span:nth-child(2) {
     opacity: 0;
   }
   .menu-toggle.is-active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-8.5px) rotate(-45deg);
   }
 
   /* トップへ戻るボタンを表示 */
