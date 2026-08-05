@@ -784,20 +784,16 @@ body {
 }
 
 /* --- 旧ギャラリーセクションの余白調整 --- */
-.old-gallery-section .gallery-main {
+.old-gallery-section {
   padding-bottom: 20px;
 }
 
-.old-gallery-section .read-more-wrapper {
-  margin-top: 10px;
-}
-
 @media (max-width: 767px) {
-  .old-gallery-section .gallery-main {
-    padding-bottom: 20px !important;
+  .old-gallery-section {
+    padding-bottom: 10px !important;
   }
-
-.old-gallery-section .read-more-wrapper {
-  margin-top: 10px;
-}
+  .old-gallery-section .read-more-wrapper {
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+  }
 }
