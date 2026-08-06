@@ -442,17 +442,66 @@ body {
 
 .contact-box {
   background: #ffffff;
-  padding: 45px 30px;
+  padding: 45px 40px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.contact-box p {
-  font-size: 1rem;
-  color: #444;
-  margin-bottom: 25px;
+/* フォーム全体のレイアウト */
+.contact-form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 入力欄の共通デザイン（灰色ボックス） */
+.contact-form-layout input[type="text"],
+.contact-form-layout textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: #e5e5e5;
+  border: none;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  color: #333;
   font-family: 'Zen Maru Gothic', sans-serif;
-  line-height: 1.9;
-  text-align: justify;
+}
+
+.contact-form-layout input[type="text"]::placeholder,
+.contact-form-layout textarea::placeholder {
+  color: #777;
+}
+
+.contact-form-layout textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* 送信ボタン（右寄せの黒ボタン） */
+.contact-submit-area {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.contact-submit-btn {
+  background: #000000;
+  color: #ffffff;
+  padding: 10px 32px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s ease;
+}
+
+.contact-submit-btn:hover {
+  opacity: 0.8;
 }
 
 /* メインコンテンツ（リンク部分） */
