@@ -46,7 +46,7 @@
       margin: 60px 0 20px 0;
     }
 
-    /* ページネーション（前後の記事移動など） */
+    /* ページネーション（next | top | prevの順番） */
     .pagination {
       margin-top: 20px;
       text-align: center;
@@ -92,9 +92,9 @@
     <hr class="blog-divider">
 
     <div class="pagination">
-      <a href="blog.html" id="back-list-link">words list</a>
-      <a href="#" id="prev-post-link" style="display:none;">prev</a>
       <a href="#" id="next-post-link" style="display:none;">next</a>
+      <a href="blog.html" id="back-list-link">top</a>
+      <a href="#" id="prev-post-link" style="display:none;">prev</a>
     </div>
   </div>
 </main>
@@ -129,7 +129,6 @@
       document.getElementById('post-title').textContent = entry.title.$t;
       document.getElementById('post-content').innerHTML = entry.content.$t;
 
-      // 古い記事（配列の次）と新しい記事（配列の前）へのリンク制御
       const prevLink = document.getElementById('prev-post-link');
       const nextLink = document.getElementById('next-post-link');
 
