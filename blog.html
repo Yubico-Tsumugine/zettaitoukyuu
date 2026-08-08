@@ -79,7 +79,7 @@
     .archive-sidebar {
       position: absolute;
       top: 0;
-      left: calc(100% + 50px); /* リストの右端から50px離した位置に固定 */
+      left: calc(100% + 0px); /* リストの右端からpx離した位置に固定 */
       width: 160px;
     }
     .archive-title {
@@ -101,7 +101,7 @@
 
     /* ページネーション（next | top | prev） */
     .pagination {
-      margin-top: 80px;
+      margin-top: 30%;
       text-align: center;
       font-family: 'CineCaption', sans-serif;
       font-size: 1rem;
@@ -115,8 +115,19 @@
       text-decoration: underline;
     }
     
+    /* スマホ画面（767px以下）のとき：絶対配置を解除して縦並びにする */
     @media (max-width: 767px) {
-      .blog-container { grid-template-columns: 1fr; }
+      .blog-layout {
+        position: static;
+        max-width: 100%;
+        padding: 0 15px;
+      }
+      .archive-sidebar {
+        position: static;
+        left: auto;
+        width: 100%;
+        margin-top: 40px;
+      }
     }
   </style>
 </head>
@@ -200,7 +211,7 @@
     const postsContainer = document.getElementById('blogger-posts');
     
     if (!data.feed || !data.feed.entry) {
-      postsContainer.innerHTML = '<p>記事が見つからなかったよ。</p>';
+      postsContainer.innerHTML = '<p>none</p>';
       return;
     }
 
