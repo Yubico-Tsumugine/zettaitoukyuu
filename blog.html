@@ -178,23 +178,23 @@
     generateArchiveMenu(allPosts);
   }
 
-  // 記事一覧を表示する関数
-  function displayPosts(posts) {
+ // ページング管理用変数
+  let currentPage = 1;
+  const postsPerPage = 10;
+
+  function displayPosts(posts, page = 1) {
     const postsContainer = document.getElementById('blogger-posts');
     postsContainer.innerHTML = '';
+    currentPage = page;
 
-    // 最大10件表示
-    const displayItems = posts.slice(0, 10);
+    const start = (page - 1) * postsPerPage;
+    const end = start + postsPerPage;
+    const paginatedItems = posts.slice(start, end);
 
-    displayItems.forEach(entry => {
+    paginatedItems.forEach(entry => {
       let title = entry.title.$t;
-      let link = '#';
-      for (let i = 0; i < entry.link.length; i++) {
-        if (entry.link[i].rel === 'alternate') {
-          link = entry.link[i].href;
-          break;
-        }
-      }
+      // 記事詳細ページへリンク（URLパラメータを使用）
+      let link = `post.html?url=${encodeURIComponent(entry.link.find(l => l.rel === 'alternate').href)}`;
       let date = new Date(entry.published.$t).toLocaleDateString();
 
       const postDiv = document.createElement('div');
@@ -205,6 +205,11 @@
       `;
       postsContainer.appendChild(postDiv);
     });
+
+    // ページ送りボタンの表示制御
+    document.getElementById('prev-page').style.display = page > 1 ? 'inline' : 'none';
+    document.getElementById('next-page').style.display = end < posts.length ? 'inline' : 'none';
+    document.getElementById('page-separator').style.display = (page > 1 || end < posts.length) ? 'inline' : 'none';
   }
 
   // アーカイブのプルダウンメニューを生成する関数
