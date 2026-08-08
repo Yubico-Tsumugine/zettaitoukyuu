@@ -27,6 +27,15 @@
       font-size: 1.1rem;
       font-weight: 500; /* 細くする */
       margin-bottom: 8px;
+      color: #000000 !important;
+      text-decoration: none;
+    }
+
+    .post-title a:visited {
+      color: #000000 !important;
+    }
+    .post-title a:hover {
+      text-decoration: underline;
     }
 
     /* レイアウト：アーカイブを右側に */
@@ -35,8 +44,8 @@
       margin: 0 auto;
       padding: 50px 20px;
       display: grid;
-      grid-template-columns: 1fr 200px; /* リストを左、アーカイブを右へ */
-      gap: 60px; /* 空白を広げる */
+      grid-template-columns: 1fr 200px; /* 左に記事リスト、右にアーカイブ */
+      gap: 60px;
       text-align: left;
     }
 
@@ -149,7 +158,7 @@
     generateArchiveMenu(allPosts);
   }
 
- // ページング管理用変数
+  // ページング管理用変数
   let currentPage = 1;
   const postsPerPage = 10;
 
@@ -161,10 +170,10 @@
     const start = (page - 1) * postsPerPage;
     const end = start + postsPerPage;
     const paginatedItems = posts.slice(start, end);
+    const totalPages = Math.ceil(posts.length / postsPerPage);
 
     paginatedItems.forEach(entry => {
       let title = entry.title.$t;
-      // 記事詳細ページへリンク（URLパラメータを使用）
       let link = `post.html?url=${encodeURIComponent(entry.link.find(l => l.rel === 'alternate').href)}`;
       let date = new Date(entry.published.$t).toLocaleDateString();
 
@@ -177,10 +186,23 @@
       postsContainer.appendChild(postDiv);
     });
 
-    // ページ送りボタンの表示制御
-    document.getElementById('prev-page').style.display = page > 1 ? 'inline' : 'none';
-    document.getElementById('next-page').style.display = end < posts.length ? 'inline' : 'none';
-    document.getElementById('page-separator').style.display = (page > 1 || end < posts.length) ? 'inline' : 'none';
+    // ページ送りボタン（next | top | prev）の表示制御と動作
+    const nextLink = document.getElementById('next-link');
+    const topLink = document.getElementById('top-link');
+    const prevLink = document.getElementById('prev-link');
+
+    if (nextLink && topLink && prevLink) {
+      // next: より新しい記事へ (page 1 より大きいとき表示)
+      nextLink.style.display = page > 1 ? 'inline' : 'none';
+      nextLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, page - 1); };
+
+      // top: 一覧の最初へ
+      topLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, 1); };
+
+      // prev: より古い記事へ (最後のページじゃないとき表示)
+      prevLink.style.display = page < totalPages ? 'inline' : 'none';
+      prevLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, page + 1); };
+    }
   }
 
   // アーカイブのプルダウンメニューを生成する関数
