@@ -128,5 +128,44 @@
   }
 </script>
 <a href="#" class="to-top-btn" aria-label="トップへ戻る"></a>
+<script>
+  const BLOG_ID = "8658788909502610758"; // あゆみのブログID
+  const POSTS_CONTAINER = document.getElementById('blogger-posts');
+
+  async function fetchBloggerPosts() {
+    // BloggerのAPIで最新の投稿を10件取得
+    const url = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?maxResults=10&key=YOUR_API_KEY`;
+    
+    // ※注意：本当はAPI KEYが必要だが、今回はフィードURLで代用してJSONPっぽく動かす手法が安定する
+    const feedUrl = `https://zettaitoukyu.blogspot.com/feeds/posts/default?alt=json&max-results=10`;
+
+    try {
+      const response = await fetch(feedUrl);
+      const data = await response.json();
+      const entries = data.feed.entry;
+
+      POSTS_CONTAINER.innerHTML = ''; // 中身をクリア
+
+      entries.forEach(entry => {
+        const title = entry.title.$t;
+        const link = entry.link.find(l => l.rel === 'alternate').href;
+        const date = new Date(entry.published.$t).toLocaleDateString();
+
+        const postElement = document.createElement('div');
+        postElement.className = 'post-item';
+        postElement.innerHTML = `
+          <div class="post-date">${date}</div>
+          <div class="post-title"><a href="${link}" style="text-decoration:none; color:#333;">${title}</a></div>
+        `;
+        POSTS_CONTAINER.appendChild(postElement);
+      });
+    } catch (error) {
+      POSTS_CONTAINER.innerHTML = '<p>記事の読み込みに失敗しちゃったな。</p>';
+    }
+  }
+
+  // 読み込み開始
+  fetchBloggerPosts();
+</script>
 </body>
 </html>
