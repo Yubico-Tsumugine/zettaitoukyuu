@@ -24,11 +24,10 @@
     }
     
     .post-title {
-      font-size: 1.2rem; /* もう少し大きく */
+      font-size: 1.2rem;
       font-weight: 500;
       margin-bottom: 8px;
       font-family: sans-serif;
-      font-weight: 500;
     }
 
     .post-title a {
@@ -45,24 +44,30 @@
 
     /* 記事ごとの隙間を広げる */
     .post-item {
-      margin-bottom: 45px; /* 下の隙間をゆったり空ける */
+      margin-bottom: 45px;
       padding-bottom: 0;
-      border-bottom: none; /* 下線をなくすかすっきりさせる場合はここ調整 */
+      border-bottom: none;
     }
 
     .post-date {
       font-size: 0.8rem;
       color: #888;
-      margin-bottom: 4px; /* 日付とタイトルの間隔 */
+      margin-bottom: 4px;
+    }
+
+    /* 全体のラッパー（タイトル上の余白を確保） */
+    .blog-main-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px 80px 20px;
     }
 
     /* レイアウト：左に記事リスト、右にアーカイブ */
     .blog-container {
-      max-width: 850px;
       margin: 0 auto;
-      padding: 50px 20px;
+      padding-top: 20px;
       display: grid;
-      grid-template-columns: 1fr 180px; /* リストとアーカイブの幅の比率を調整 */
+      grid-template-columns: 1fr 160px;
       justify-content: center;
       gap: 50px;
       text-align: left;
@@ -88,12 +93,10 @@
       border-radius: 0;
       cursor: pointer;
     }
-    
-    .post-date { font-size: 0.8rem; color: #888; }
 
     /* ページネーション（next | top | prev） */
     .pagination {
-      margin-top: 40px;
+      margin-top: 50px;
       text-align: center;
       font-family: 'CineCaption', sans-serif;
       font-size: 1rem;
@@ -134,32 +137,32 @@
 </header>
 
 <main>
-  <div class="blog-main-wrapper" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+  <div class="blog-main-wrapper">
     <h1 class="page-title">Words</h1>
     <h1 class="words-text">日記は詩で詩は日記</h1>
     
-    <div class="blog-container" style="padding: 0; max-width: none;">
-    <!-- 左側：記事リストエリア -->
-    <div class="post-list-area">
-      <div id="blogger-posts">読み込み中...</div>
-      
-      <div class="pagination">
-        <a href="#" id="next-link">next</a>
-        <a href="#" id="top-link">top</a>
-        <a href="#" id="prev-link">prev</a>
+    <div class="blog-container">
+      <!-- 左側：記事リストエリア -->
+      <div class="post-list-area">
+        <div id="blogger-posts">読み込み中...</div>
+        
+        <div class="pagination">
+          <a href="#" id="next-link">next</a>
+          <a href="#" id="top-link">top</a>
+          <a href="#" id="prev-link">prev</a>
+        </div>
       </div>
-    </div>
 
-    <!-- 右側：アーカイブエリア -->
-    <aside class="archive-sidebar">
-      <h2 class="archive-title">過去の詩</h2>
-      <div id="blogger-archive">
-        <select id="archive-dropdown" class="archive-select">
-          <option value="">すべての記事</option>
-        </select>
-      </div>
-    </aside>
-  </div>
+      <!-- 右側：アーカイブエリア -->
+      <aside class="archive-sidebar">
+        <h2 class="archive-title">過去の詩</h2>
+        <div id="blogger-archive">
+          <select id="archive-dropdown" class="archive-select">
+            <option value="">すべての記事</option>
+          </select>
+        </div>
+      </aside>
+    </div>
   </div>
 </main>
 
