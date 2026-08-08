@@ -63,41 +63,34 @@
       padding: 50px 20px 80px 20px;
     }
 
-    /* デスクトップ用：横並び（左に記事リスト、右にアーカイブ） */
-    .blog-layout {
+    /* --- 全体の基本レイアウト --- */
+    .blog-container {
       max-width: 850px;
       margin: 0 auto;
       display: grid;
+      /* PC時：左にリスト、右にサイドバー */
       grid-template-columns: 1fr 160px;
-      justify-content: center;
+      grid-template-areas: 
+        "list sidebar"
+        "footer footer";
       gap: 40px;
-      text-align: left;
+      align-items: start;
     }
 
-    /* ラインとページネーションの親エリア */
-    .footer-pagination-area {
-      max-width: 850px; /* ここを blog-layout の max-width と同じにする */
-      margin: 0 auto;
-      text-align: center;
-      padding: 0 20px; /* 画面端に張り付かないように余白を入れる */
-    }
+    /* 各エリアの定義 */
+    .post-list-area { grid-area: list; width: 100%; }
+    .archive-sidebar { grid-area: sidebar; width: 160px; }
+    .footer-pagination-area { grid-area: footer; width: 100%; margin-top: 20px; text-align: center; padding: 0; }
 
+    /* ラインの設定 */
     .blog-divider {
       border: none;
       border-top: 1px solid #000000;
       margin: 60px 0 20px 0;
-      width: 100%; /* 親の幅いっぱいに広がる */
-    }
-
-    /* 記事リスト単体のエリア */
-    .post-list-area {
       width: 100%;
     }
 
-    .archive-sidebar {
-      width: 160px;
-      position: static; /* 絶対配置を完全に解除する */
-    }
+    /* --- アーカイブ（サイドバー）の見た目 --- */
     .archive-title {
       font-size: 0.8rem;
       font-family: sans-serif;
@@ -115,7 +108,7 @@
       cursor: pointer;
     }
 
-    /* ページネーション */
+    /* --- ページネーションの見た目 --- */
     .pagination {
       margin-top: 20px;
       text-align: center; 
@@ -130,30 +123,23 @@
     .pagination a:hover {
       text-decoration: underline;
     }
-    
-    /* スマホ画面（767px以下）のとき：絶対配置を解除して縦並びにする */
-    @media (max-width: 767px) {
-      .blog-layout {
-        position: static;
-        max-width: 100%;
-        padding: 0 15px;
-      }
-      .archive-sidebar {
-        position: static;
-        left: auto;
-        width: 100%;
-        margin-top: 40px;
-      }
-    }
-    /* 中間幅・スマホのとき：アーカイブを記事リストの下に縦並びにする */
+
+    /* --- 中間幅（iPad等）およびスマホ：縦並びの設定 --- */
     @media (max-width: 950px) {
-      .blog-layout {
-        max-width: 650px; /* 記事リストが収まる中心の幅 */
-        grid-template-columns: 1fr; /* 1列にして縦に積む */
+      .blog-container {
+        grid-template-columns: 1fr;
+        /* ここで順番を制御：リスト → フッター(ライン+ページネーション) → サイドバー */
+        grid-template-areas: 
+          "list"
+          "footer"
+          "sidebar";
+        max-width: 650px;
+        margin: 0 auto;
+        padding: 0 20px; /* 端に寄りすぎないように調整 */
       }
       .archive-sidebar {
         width: 100%;
-        margin-top: 50px; /* リストやページネーションの下にしっかり間隔をあける */
+        margin-top: 60px; /* ページネーションの下にしっかり余白を作る */
       }
     }
   </style>
@@ -184,16 +170,15 @@
     <h1 class="page-title">Words</h1>
     <h1 class="words-text">日記は詩で詩は日記</h1>
     
-    <!-- 全体を包む親（これを画面の中央に置く） -->
-    <div class="blog-layout">
+    <!-- 全体を包むメインエリア -->
+    <div class="blog-container">
       
-      <!-- 記事リスト単体のコンテナ（ここを画面中央にする） -->
+      <!-- 左側：記事リスト（PC時） -->
       <div class="post-list-area">
         <div id="blogger-posts">loading...</div>
-</div>
-       
+      </div>
 
-      <!-- アーカイブボックス（右側に配置） -->
+      <!-- 右側：アーカイブ（PC時） -->
       <aside class="archive-sidebar">
         <h2 class="archive-title">過去の詩</h2>
         <div id="blogger-archive">
@@ -202,17 +187,19 @@
           </select>
         </div>
       </aside>
-</div><!-- blog-layout をここで閉じる -->
 
- <!-- ラインとページネーションを完全に外側に独立させる -->
-    <div class="footer-pagination-area">
-      <hr class="blog-divider">
-      <div class="pagination">
-        <a href="#" id="next-link">next</a>
-        <a href="#" id="top-link">top</a>
-        <a href="#" id="prev-link">prev</a>
+      <!-- 下部：ラインとページネーション -->
+      <div class="footer-pagination-area">
+        <hr class="blog-divider">
+        <div class="pagination">
+          <a href="#" id="next-link">next</a>
+          <a href="#" id="top-link">top</a>
+          <a href="#" id="prev-link">prev</a>
+        </div>
       </div>
+
     </div>
+  </div>
 </main>
 
 <footer class="footer-container">
