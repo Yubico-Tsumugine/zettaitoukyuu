@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="stylesheet.css">
   
   <style>
-    /* ブログ専用の調整 */
     .blog-container {
       max-width: 800px;
       margin: 0 auto;
@@ -20,38 +19,56 @@
       display: grid;
       grid-template-columns: 200px 1fr;
       gap: 40px;
+      text-align: left;
     }
     
-    /* アーカイブエリア */
     .archive-sidebar {
       text-align: left;
     }
     .archive-title {
       font-size: 1.2rem;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       font-family: 'CineCaption', sans-serif;
     }
     
-    /* 記事リストエリア */
+    /* プルダウンのスタイル（文字：黒、背景：グレー） */
+    .archive-select {
+      width: 100%;
+      padding: 8px 10px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 0.95rem;
+      color: #000000;
+      background-color: #e0e0e0;
+      border: 1px solid #b0b0b0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
     .post-list-area {
       text-align: left;
     }
     .post-item {
-      margin-bottom: 30px;
-      padding-bottom: 20px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
       border-bottom: 1px solid #eee;
     }
     .post-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+    }
+    .post-title a {
+      color: #333333;
+      text-decoration: none;
+    }
+    .post-title a:hover {
+      text-decoration: underline;
     }
     .post-date {
-      font-size: 0.9rem;
-      color: #888;
+      font-size: 0.85rem;
+      color: #888888;
     }
     
-    /* ページネーション */
     .pagination {
       margin-top: 40px;
       text-align: center;
@@ -98,14 +115,21 @@
   <div class="blog-container">
     <aside class="archive-sidebar">
       <h2 class="archive-title">Archive</h2>
-      <div id="blogger-archive"><!-- ここにJSでアーカイブが入る --></div>
+      <div id="blogger-archive">
+        <!-- プルダウンメニュー -->
+        <select id="archive-dropdown" class="archive-select">
+          <option value="">すべての記事</option>
+        </select>
+      </div>
     </aside>
     
     <div class="post-list-area">
-      <div id="blogger-posts"><!-- ここにJSで記事リストが入る --></div>
+      <div id="blogger-posts">読み込み中...</div>
       
       <div class="pagination">
-        <a href="#" id="prev-link">prev</a> | <a href="#" id="next-link">next</a>
+        <a href="#" id="prev-page" style="display:none;">prev</a> 
+        <span id="page-separator" style="display:none;">|</span> 
+        <a href="#" id="next-page" style="display:none;">next</a>
       </div>
     </div>
   </div>
@@ -126,46 +150,99 @@
       navMenu.classList.toggle('is-open');
     });
   }
-</script>
-<a href="#" class="to-top-btn" aria-label="トップへ戻る"></a>
-<script>
-  const BLOG_ID = "8658788909502610758"; // あゆみのブログID
-  const POSTS_CONTAINER = document.getElementById('blogger-posts');
 
-  async function fetchBloggerPosts() {
-    // BloggerのAPIで最新の投稿を10件取得
-    const url = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?maxResults=10&key=YOUR_API_KEY`;
+  // Blogger連携スクリプト（JSONP方式でCORS回避）
+  let allPosts = [];
+
+  function handleBloggerData(data) {
+    const postsContainer = document.getElementById('blogger-posts');
+    const archiveSelect = document.getElementById('archive-dropdown');
     
-    // ※注意：本当はAPI KEYが必要だが、今回はフィードURLで代用してJSONPっぽく動かす手法が安定する
-    const feedUrl = `https://zettaitoukyu.blogspot.com/feeds/posts/default?alt=json&max-results=10`;
-
-    try {
-      const response = await fetch(feedUrl);
-      const data = await response.json();
-      const entries = data.feed.entry;
-
-      POSTS_CONTAINER.innerHTML = ''; // 中身をクリア
-
-      entries.forEach(entry => {
-        const title = entry.title.$t;
-        const link = entry.link.find(l => l.rel === 'alternate').href;
-        const date = new Date(entry.published.$t).toLocaleDateString();
-
-        const postElement = document.createElement('div');
-        postElement.className = 'post-item';
-        postElement.innerHTML = `
-          <div class="post-date">${date}</div>
-          <div class="post-title"><a href="${link}" style="text-decoration:none; color:#333;">${title}</a></div>
-        `;
-        POSTS_CONTAINER.appendChild(postElement);
-      });
-    } catch (error) {
-      POSTS_CONTAINER.innerHTML = '<p>記事の読み込みに失敗しちゃったな。</p>';
+    if (!data.feed || !data.feed.entry) {
+      postsContainer.innerHTML = '<p>記事が見つからなかったよ。</p>';
+      return;
     }
+
+    allPosts = data.feed.entry;
+    displayPosts(allPosts);
+    generateArchiveMenu(allPosts);
   }
 
-  // 読み込み開始
-  fetchBloggerPosts();
+  // 記事一覧を表示する関数
+  function displayPosts(posts) {
+    const postsContainer = document.getElementById('blogger-posts');
+    postsContainer.innerHTML = '';
+
+    // 最大10件表示
+    const displayItems = posts.slice(0, 10);
+
+    displayItems.forEach(entry => {
+      let title = entry.title.$t;
+      let link = '#';
+      for (let i = 0; i < entry.link.length; i++) {
+        if (entry.link[i].rel === 'alternate') {
+          link = entry.link[i].href;
+          break;
+        }
+      }
+      let date = new Date(entry.published.$t).toLocaleDateString();
+
+      const postDiv = document.createElement('div');
+      postDiv.className = 'post-item';
+      postDiv.innerHTML = `
+        <div class="post-date">${date}</div>
+        <div class="post-title"><a href="${link}">${title}</a></div>
+      `;
+      postsContainer.appendChild(postDiv);
+    });
+  }
+
+  // アーカイブのプルダウンメニューを生成する関数
+  function generateArchiveMenu(posts) {
+    const archiveSelect = document.getElementById('archive-dropdown');
+    const archives = {};
+
+    posts.forEach(entry => {
+      const date = new Date(entry.published.$t);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const key = `${year}年${month}月`;
+      
+      if (!archives[key]) {
+        archives[key] = { year, month };
+      }
+    });
+
+    // 年月ごとにオプションを追加
+    Object.keys(archives).forEach(key => {
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = key;
+      archiveSelect.appendChild(option);
+    });
+
+    // プルダウンを変更したときの絞り込み処理
+    archiveSelect.addEventListener('change', (e) => {
+      const selected = e.target.value;
+      if (!selected) {
+        displayPosts(allPosts);
+        return;
+      }
+
+      const filtered = allPosts.filter(entry => {
+        const date = new Date(entry.published.$t);
+        const key = `${date.getFullYear()}年${date.getMonth() + 1}月`;
+        return key === selected;
+      });
+
+      displayPosts(filtered);
+    });
+  }
 </script>
+
+<!-- Bloggerのデータを安全に読み込むためのJSONPタグ -->
+<script src="https://zettaitoukyu.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=150&callback=handleBloggerData"></script>
+
+<a href="#" class="to-top-btn" aria-label="トップへ戻る"></a>
 </body>
 </html>
