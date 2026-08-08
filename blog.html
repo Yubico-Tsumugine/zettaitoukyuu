@@ -24,9 +24,11 @@
     }
     
     .post-title {
-      font-size: 1.1rem;
+      font-size: 1.2rem; /* もう少し大きく */
       font-weight: 500;
       margin-bottom: 8px;
+      font-family: sans-serif;
+      font-weight: 500;
     }
 
     .post-title a {
@@ -39,6 +41,19 @@
     }
     .post-title a:hover {
       text-decoration: underline;
+    }
+
+    /* 記事ごとの隙間を広げる */
+    .post-item {
+      margin-bottom: 45px; /* 下の隙間をゆったり空ける */
+      padding-bottom: 0;
+      border-bottom: none; /* 下線をなくすかすっきりさせる場合はここ調整 */
+    }
+
+    .post-date {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 4px; /* 日付とタイトルの間隔 */
     }
 
     /* レイアウト：左に記事リスト、右にアーカイブ */
@@ -161,6 +176,9 @@
   }
 
   let allPosts = [];
+  let currentPosts = [];
+  let currentPage = 1;
+  const postsPerPage = 10;
 
   function handleBloggerData(data) {
     const postsContainer = document.getElementById('blogger-posts');
@@ -171,14 +189,12 @@
     }
 
     allPosts = data.feed.entry;
-    displayPosts(allPosts);
+    displayPosts(allPosts, 1);
     generateArchiveMenu(allPosts);
   }
 
-  let currentPage = 1;
-  const postsPerPage = 10;
-
   function displayPosts(posts, page = 1) {
+    currentPosts = posts;
     const postsContainer = document.getElementById('blogger-posts');
     postsContainer.innerHTML = '';
     currentPage = page;
@@ -208,12 +224,13 @@
 
     if (nextLink && topLink && prevLink) {
       nextLink.style.display = page > 1 ? 'inline' : 'none';
-      nextLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, page - 1); };
+      nextLink.onclick = (e) => { e.preventDefault(); displayPosts(currentPosts, page - 1); };
 
-      topLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, 1); };
+      topLink.style.display = totalPages > 1 ? 'inline' : 'none';
+      topLink.onclick = (e) => { e.preventDefault(); displayPosts(currentPosts, 1); };
 
       prevLink.style.display = page < totalPages ? 'inline' : 'none';
-      prevLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, page + 1); };
+      prevLink.onclick = (e) => { e.preventDefault(); displayPosts(currentPosts, page + 1); };
     }
   }
 
@@ -242,7 +259,7 @@
     archiveSelect.addEventListener('change', (e) => {
       const selected = e.target.value;
       if (!selected) {
-        displayPosts(allPosts);
+        displayPosts(allPosts, 1);
         return;
       }
 
@@ -252,7 +269,7 @@
         return key === selected;
       });
 
-      displayPosts(filtered);
+      displayPosts(filtered, 1);
     });
   }
 </script>
