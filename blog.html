@@ -58,12 +58,13 @@
 
     /* レイアウト：左に記事リスト、右にアーカイブ */
     .blog-container {
-      max-width: 900px;
+      max-width: 850px;
       margin: 0 auto;
       padding: 50px 20px;
       display: grid;
-      grid-template-columns: 1fr 200px;
-      gap: 80px; /* リストとアーカイブの間の隙間を広げて、全体のバランスを取る */
+      grid-template-columns: 1fr 180px; /* リストとアーカイブの幅の比率を調整 */
+      justify-content: center;
+      gap: 50px;
       text-align: left;
     }
 
@@ -133,10 +134,11 @@
 </header>
 
 <main>
-  <h1 class="page-title">Word</h1>
-  <h1 class="words-text">日記は詩で詩は日記</h1>
-  
-  <div class="blog-container">
+  <div class="blog-main-wrapper" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+    <h1 class="page-title">Words</h1>
+    <h1 class="words-text">日記は詩で詩は日記</h1>
+    
+    <div class="blog-container" style="padding: 0; max-width: none;">
     <!-- 左側：記事リストエリア -->
     <div class="post-list-area">
       <div id="blogger-posts">読み込み中...</div>
@@ -157,6 +159,7 @@
         </select>
       </div>
     </aside>
+  </div>
   </div>
 </main>
 
