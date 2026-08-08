@@ -20,13 +20,16 @@
       line-height: 2.1;
       margin-bottom: 70px;
       font-family: 'Zen Maru Gothic', sans-serif;
-      font-weight: 500; /* 細くする */
+      font-weight: 500;
     }
     
     .post-title {
       font-size: 1.1rem;
-      font-weight: 500; /* 細くする */
+      font-weight: 500;
       margin-bottom: 8px;
+    }
+
+    .post-title a {
       color: #000000 !important;
       text-decoration: none;
     }
@@ -38,24 +41,24 @@
       text-decoration: underline;
     }
 
-    /* レイアウト：アーカイブを右側に */
+    /* レイアウト：左に記事リスト、右にアーカイブ */
     .blog-container {
       max-width: 800px;
       margin: 0 auto;
       padding: 50px 20px;
       display: grid;
-      grid-template-columns: 1fr 200px; /* 左に記事リスト、右にアーカイブ */
+      grid-template-columns: 1fr 200px;
       gap: 60px;
       text-align: left;
     }
 
-    /* アーカイブボックスの角張ったデザイン */
+    /* アーカイブボックスのデザイン */
     .archive-sidebar {
       text-align: left;
     }
     .archive-title {
       font-size: 0.8rem;
-      font-family: sans-serif; /* クラシックなゴシックへ */
+      font-family: sans-serif;
       margin-bottom: 10px;
     }
     .archive-select {
@@ -64,13 +67,29 @@
       font-family: sans-serif;
       font-size: 0.8rem;
       color: #000;
-      background-color: #fff; /* 背景を白に */
+      background-color: #fff;
       border: 1px solid #000;
-      border-radius: 0; /* 角を丸めない */
+      border-radius: 0;
       cursor: pointer;
     }
     
     .post-date { font-size: 0.8rem; color: #888; }
+
+    /* ページネーション（next | top | prev） */
+    .pagination {
+      margin-top: 40px;
+      text-align: center;
+      font-family: 'CineCaption', sans-serif;
+      font-size: 1rem;
+    }
+    .pagination a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .pagination a:hover {
+      text-decoration: underline;
+    }
     
     @media (max-width: 767px) {
       .blog-container { grid-template-columns: 1fr; }
@@ -103,25 +122,26 @@
   <h1 class="words-text">日記は詩で詩は日記</h1>
   
   <div class="blog-container">
+    <!-- 左側：記事リストエリア -->
+    <div class="post-list-area">
+      <div id="blogger-posts">読み込み中...</div>
+      
+      <div class="pagination">
+        <a href="#" id="next-link">next</a>
+        <a href="#" id="top-link">top</a>
+        <a href="#" id="prev-link">prev</a>
+      </div>
+    </div>
+
+    <!-- 右側：アーカイブエリア -->
     <aside class="archive-sidebar">
       <h2 class="archive-title">過去の詩</h2>
       <div id="blogger-archive">
-        <!-- プルダウンメニュー -->
         <select id="archive-dropdown" class="archive-select">
           <option value="">すべての記事</option>
         </select>
       </div>
     </aside>
-    
-    <div class="post-list-area">
-      <div id="blogger-posts">読み込み中...</div>
-      
-      <div class="pagination">
-        <a href="#" id="prev-page" style="display:none;">prev</a> 
-        <span id="page-separator" style="display:none;">|</span> 
-        <a href="#" id="next-page" style="display:none;">next</a>
-      </div>
-    </div>
   </div>
 </main>
 
@@ -131,7 +151,6 @@
 </footer>
 
 <script>
-  // メニュー用スクリプト
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('.nav-menu');
   if (menuToggle && navMenu) {
@@ -141,12 +160,10 @@
     });
   }
 
-  // Blogger連携スクリプト（JSONP方式でCORS回避）
   let allPosts = [];
 
   function handleBloggerData(data) {
     const postsContainer = document.getElementById('blogger-posts');
-    const archiveSelect = document.getElementById('archive-dropdown');
     
     if (!data.feed || !data.feed.entry) {
       postsContainer.innerHTML = '<p>記事が見つからなかったよ。</p>';
@@ -158,7 +175,6 @@
     generateArchiveMenu(allPosts);
   }
 
-  // ページング管理用変数
   let currentPage = 1;
   const postsPerPage = 10;
 
@@ -186,26 +202,21 @@
       postsContainer.appendChild(postDiv);
     });
 
-    // ページ送りボタン（next | top | prev）の表示制御と動作
     const nextLink = document.getElementById('next-link');
     const topLink = document.getElementById('top-link');
     const prevLink = document.getElementById('prev-link');
 
     if (nextLink && topLink && prevLink) {
-      // next: より新しい記事へ (page 1 より大きいとき表示)
       nextLink.style.display = page > 1 ? 'inline' : 'none';
       nextLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, page - 1); };
 
-      // top: 一覧の最初へ
       topLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, 1); };
 
-      // prev: より古い記事へ (最後のページじゃないとき表示)
       prevLink.style.display = page < totalPages ? 'inline' : 'none';
       prevLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, page + 1); };
     }
   }
 
-  // アーカイブのプルダウンメニューを生成する関数
   function generateArchiveMenu(posts) {
     const archiveSelect = document.getElementById('archive-dropdown');
     const archives = {};
@@ -221,7 +232,6 @@
       }
     });
 
-    // 年月ごとにオプションを追加
     Object.keys(archives).forEach(key => {
       const option = document.createElement('option');
       option.value = key;
@@ -229,7 +239,6 @@
       archiveSelect.appendChild(option);
     });
 
-    // プルダウンを変更したときの絞り込み処理
     archiveSelect.addEventListener('change', (e) => {
       const selected = e.target.value;
       if (!selected) {
@@ -248,7 +257,6 @@
   }
 </script>
 
-<!-- Bloggerのデータを安全に読み込むためのJSONPタグ -->
 <script src="https://zettaitoukyu.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=150&callback=handleBloggerData"></script>
 
 <a href="#" class="to-top-btn" aria-label="トップへ戻る"></a>
