@@ -22,16 +22,17 @@
 
     /* 記事タイトル */
     #post-title {
-      font-size: 1.2rem;
-      font-weight: 500;
+      font-size: 1.5rem;
+      font-weight: 700;
       margin-bottom: 25px;
-      font-family: sans-serif;
+      font-family: 'sans-serif';
+      color: #000000;
     }
 
     /* 記事本文エリア */
     .post-body {
       line-height: 2.1;
-      font-family: 'Zen Maru Gothic', sans-serif;
+      font-family: 'sans-serif';
       font-weight: 500;
     }
     
@@ -50,7 +51,7 @@
     .pagination {
       margin-top: 20px;
       text-align: center;
-      font-family: 'CineCaption', sans-serif;
+      font-family: 'sans-serif';
       font-size: 1rem;
     }
     .pagination a {
@@ -88,15 +89,15 @@
 <main>
   <div class="post-main-wrapper">
     <article class="post-body">
-      <h1 id="post-title">読み込み中...</h1>
-      <div id="post-content">読み込み中...</div>
+      <h1 id="post-title">loading...</h1>
+      <div id="post-content">loading...</div>
     </article>
 
     <hr class="blog-divider">
 
     <div class="pagination">
       <a href="#" id="next-post-link" style="display:none;">next</a>
-      <a href="blog.html" id="back-list-link">top</a>
+      <a href="blog.html" id="back-list-link">Words list</a>
       <a href="#" id="prev-post-link" style="display:none;">prev</a>
     </div>
   </div>
@@ -119,7 +120,7 @@
 
   function handleBloggerData(data) {
     if (!data.feed || !data.feed.entry) {
-      document.getElementById('post-content').innerHTML = '<p>記事が見つからなかったよ。</p>';
+      document.getElementById('post-content').innerHTML = '<p>none</p>';
       return;
     }
 
@@ -150,7 +151,7 @@
       }
 
     } else {
-      document.getElementById('post-content').innerHTML = '<p>記事が見つからなかったよ。</p>';
+      document.getElementById('post-content').innerHTML = '<p>none</p>';
     }
   }
 </script>
