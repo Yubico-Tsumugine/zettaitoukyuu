@@ -24,13 +24,14 @@
       font-weight: 500;
     }
     
+    /* 個別の記事タイトルも確実に左寄せにする */
     .post-title {
       font-size: 1.2rem;
       font-weight: 500;
       margin-bottom: 8px;
       font-family: sans-serif;
+      text-align: left !important;
     }
-
     .post-title a {
       color: #000000 !important;
       text-decoration: none;
@@ -54,6 +55,7 @@
       font-size: 0.8rem;
       color: #888;
       margin-bottom: 4px;
+      text-align: left !important;
     }
 
     /* 全体のラッパー（タイトル上の余白を確保） */
@@ -78,7 +80,12 @@
     }
 
     /* 各エリアの定義 */
-    .post-list-area { grid-area: list; width: 100%; }
+  /* 記事リストエリア自体を左寄せの基準にする */
+    .post-list-area { 
+      grid-area: list; 
+      width: 100%; 
+      text-align: left; /* リスト内のテキストを左に寄せる */
+    }
     .archive-sidebar { grid-area: sidebar; width: 160px; }
     .footer-pagination-area { grid-area: footer; width: 100%; margin-top: 20px; text-align: center; padding: 0; }
 
