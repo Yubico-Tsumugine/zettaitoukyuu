@@ -4,35 +4,98 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>記事詳細 - 絶対等級</title>
+  
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="stylesheet.css">
+  
   <style>
-    /* blog.htmlから持ってきたスタイル */
-    .blog-container { max-width: 800px; margin: 0 auto; padding: 50px 20px; display: grid; grid-template-columns: 200px 1fr; gap: 40px; }
-    .post-body { text-align: left; line-height: 1.8; }
-    #post-content { margin-top: 20px; }
-    @media (max-width: 767px) { .blog-container { grid-template-columns: 1fr; } }
+    /* 全体のラッパー（一覧ページと統一した上下の余白） */
+    .post-main-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 50px 20px 80px 20px;
+      text-align: left;
+    }
+
+    /* 記事タイトル */
+    #post-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 25px;
+      font-family: sans-serif;
+    }
+
+    /* 記事本文エリア */
+    .post-body {
+      line-height: 2.1;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500;
+    }
+    
+    #post-content {
+      margin-top: 20px;
+    }
+
+    /* 記事下の黒いライン */
+    .blog-divider {
+      border: none;
+      border-top: 1px solid #000000;
+      margin: 60px 0 20px 0;
+    }
+
+    /* ページネーション（前後の記事移動など） */
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+      font-family: 'CineCaption', sans-serif;
+      font-size: 1rem;
+    }
+    .pagination a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .pagination a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
 <header class="site-header">
-  <a class="header-link" href="index.html"><img alt="絶対等級" class="header-logo-img" src="https://blogger.googleusercontent.com/img/a/AVvXsEgzYC6fx_A_iblBTBSQRe6Um6WkZXSq-fmjwuJqZoQc6GaLhAKpNo-NOPzkQRk7G19uwREuRpKjKqE_xkVBNaLK7SmuqO3tbU1f3cnxG-C8R7Bu3rve1alTbJgFfc3ZBh3jdrZwaNo7IsaJ30BtLKcD54I3OnZV97_7NGqeQJDZ7OIU0HpR8MP57cMKAHee"></a>
+  <a class="header-link" href="index.html">
+    <img alt="絶対等級" class="header-logo-img" src="https://blogger.googleusercontent.com/img/a/AVvXsEgzYC6fx_A_iblBTBSQRe6Um6WkZXSq-fmjwuJqZoQc6GaLhAKpNo-NOPzkQRk7G19uwREuRpKjKqE_xkVBNaLK7SmuqO3tbU1f3cnxG-C8R7Bu3rve1alTbJgFfc3ZBh3jdrZwaNo7IsaJ30BtLKcD54I3OnZV97_7NGqeQJDZ7OIU0HpR8MP57cMKAHee">
+  </a>
   <nav class="nav-menu">
-    <a href="index.html">Gallery</a><a href="about.html">About</a><a href="blog.html">Words</a><a href="link.html">Link</a>
+    <a href="index.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Words</a>
+    <a href="link.html">Link</a>
   </nav>
+  <button class="menu-toggle" aria-label="メニューを開閉">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
 <main>
-  <div class="blog-container">
-    <aside class="archive-sidebar">
-      <h2 class="archive-title">過去の詩</h2>
-      <div id="blogger-archive"><a href="blog.html">一覧へ戻る</a></div>
-    </aside>
-    
+  <div class="post-main-wrapper">
     <article class="post-body">
-      <h1 id="post-title">loading...</h1>
-      <div id="post-content">loading...</div>
+      <h1 id="post-title">読み込み中...</h1>
+      <div id="post-content">読み込み中...</div>
     </article>
+
+    <hr class="blog-divider">
+
+    <div class="pagination">
+      <a href="blog.html" id="back-list-link">words list</a>
+      <a href="#" id="prev-post-link" style="display:none;">prev</a>
+      <a href="#" id="next-post-link" style="display:none;">next</a>
+    </div>
   </div>
 </main>
 
@@ -42,18 +105,54 @@
 </footer>
 
 <script>
-  function handleBloggerData(data) {
-    const postUrl = new URLSearchParams(window.location.search).get('url');
-    const entry = data.feed.entry.find(e => e.link.find(l => l.rel === 'alternate').href === postUrl);
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('is-active');
+      navMenu.classList.toggle('is-open');
+    });
+  }
 
-    if (entry) {
+  function handleBloggerData(data) {
+    if (!data.feed || !data.feed.entry) {
+      document.getElementById('post-content').innerHTML = '<p>記事が見つからなかったよ。</p>';
+      return;
+    }
+
+    const posts = data.feed.entry;
+    const postUrl = new URLSearchParams(window.location.search).get('url');
+    const currentIndex = posts.findIndex(e => e.link.find(l => l.rel === 'alternate').href === postUrl);
+
+    if (currentIndex !== -1) {
+      const entry = posts[currentIndex];
       document.getElementById('post-title').textContent = entry.title.$t;
       document.getElementById('post-content').innerHTML = entry.content.$t;
+
+      // 古い記事（配列の次）と新しい記事（配列の前）へのリンク制御
+      const prevLink = document.getElementById('prev-post-link');
+      const nextLink = document.getElementById('next-post-link');
+
+      if (currentIndex < posts.length - 1) {
+        const olderEntry = posts[currentIndex + 1];
+        const olderUrl = olderEntry.link.find(l => l.rel === 'alternate').href;
+        prevLink.href = `post.html?url=${encodeURIComponent(olderUrl)}`;
+        prevLink.style.display = 'inline';
+      }
+
+      if (currentIndex > 0) {
+        const newerEntry = posts[currentIndex - 1];
+        const newerUrl = newerEntry.link.find(l => l.rel === 'alternate').href;
+        nextLink.href = `post.html?url=${encodeURIComponent(newerUrl)}`;
+        nextLink.style.display = 'inline';
+      }
+
     } else {
-      document.getElementById('post-content').innerHTML = '<p>none</p>';
+      document.getElementById('post-content').innerHTML = '<p>記事が見つからなかったよ。</p>';
     }
   }
 </script>
 <script src="https://zettaitoukyu.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=150&callback=handleBloggerData"></script>
+<a href="#" class="to-top-btn" aria-label="トップへ戻る"></a>
 </body>
 </html>
