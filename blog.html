@@ -62,11 +62,14 @@
       padding: 50px 20px 80px 20px;
     }
 
-    /* 記事リストとアーカイブ全体を管理するレイアウト */
+    /* デスクトップ用：横並び（左に記事リスト、右にアーカイブ） */
     .blog-layout {
-      max-width: 700px; /* 記事リストを置きたい幅 */
+      max-width: 850px;
       margin: 0 auto;
-      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 160px;
+      justify-content: center;
+      gap: 40px;
       text-align: left;
     }
 
@@ -82,12 +85,9 @@
       width: 100%;
     }
 
-    /* アーカイブボックスを記事リストの右側に絶対配置で添える */
     .archive-sidebar {
-      position: absolute;
-      top: 0;
-      left: calc(100% + 15px); /* リストの右端からpx離した位置に固定 */
       width: 160px;
+      position: static; /* 絶対配置を完全に解除する */
     }
     .archive-title {
       font-size: 0.8rem;
@@ -136,15 +136,15 @@
         margin-top: 40px;
       }
     }
-    /* 中間幅（800px〜950px）のとき、アーカイブを少し細くして耐える */
-    @media (min-width: 800px) and (max-width: 950px) {
+    /* 中間幅・スマホのとき：アーカイブを記事リストの下に縦並びにする */
+    @media (max-width: 950px) {
       .blog-layout {
-        max-width: 750px; /* 全体を少し広げる */
-        padding: 0 20px;
+        max-width: 650px; /* 記事リストが収まる中心の幅 */
+        grid-template-columns: 1fr; /* 1列にして縦に積む */
       }
       .archive-sidebar {
-        width: 120px; /* アーカイブを少し細くする */
-        left: calc(100% + 10px); /* 隙間も少し詰める */
+        width: 100%;
+        margin-top: 50px; /* リストやページネーションの下にしっかり間隔をあける */
       }
     }
   </style>
