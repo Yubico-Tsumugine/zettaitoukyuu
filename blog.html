@@ -74,11 +74,13 @@
       text-align: left;
     }
 
-    /* 記事リストとページネーションの間の細い黒ライン */
+    /* 記事リストとページネーションの間のライン */
     .blog-divider {
+      grid-column: 1 / -1; /* グリッドの左端から右端までをカバーする */
       border: none;
       border-top: 1px solid #000000;
-      margin: 60px 0 20px 0; /* 上の余白を60pxに増やし、下の余白を20pxに詰める */
+      margin: 60px 0 20px 0;
+      width: 100%; /* コンテナいっぱいに広げる */
     }
 
     /* 記事リスト単体のエリア */
@@ -107,10 +109,10 @@
       cursor: pointer;
     }
 
-    /* ページネーション（next | top | prev） */
+    /* ページネーション */
     .pagination {
-      margin-top: 20px; /* px指定ですっきり詰める */
-      text-align: center;
+      margin-top: 20px;
+      text-align: center; 
       font-family: 'CineCaption', sans-serif;
       font-size: 1rem;
     }
@@ -181,10 +183,10 @@
       
       <!-- 記事リスト単体のコンテナ（ここを画面中央にする） -->
       <div class="post-list-area">
-        <div id="blogger-posts">読み込み中...</div>
-        
-        <hr class="blog-divider">
+        <div id="blogger-posts">loading...</div>
+        </div>
 
+        <hr class="blog-divider">
         <div class="pagination">
           <a href="#" id="next-link">next</a>
           <a href="#" id="top-link">top</a>
