@@ -18,13 +18,19 @@
   <!-- フッダーはblog.htmlと共通 -->
 
   <script>
-    // URLのパラメータから記事を取得して表示する
-    const params = new URLSearchParams(window.location.search);
-    const postUrl = params.get('url');
+    // URLパラメータを取得する確実な方法
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const postUrl = urlParams.get('url');
+
+    console.log("読み込もうとしているURL:", postUrl); // デバッグ用：ブラウザのコンソールで確認できる
 
     if (postUrl) {
-      // 外部ドメインのiframe埋め込み（Bloggerの仕様上これが一番確実）
-      document.getElementById('post-content').innerHTML = `<iframe src="${postUrl}" width="100%" height="800px" frameborder="0"></iframe>`;
+      const container = document.getElementById('post-content');
+      // iframeを生成して読み込む
+      container.innerHTML = `<iframe src="${postUrl}" style="width:100%; height:80vh; border:none;"></iframe>`;
+    } else {
+      document.getElementById('post-content').innerHTML = '<p>記事のリンクが正しく取得できなかったな。</p>';
     }
   </script>
 </body>
