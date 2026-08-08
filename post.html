@@ -30,8 +30,8 @@
     </aside>
     
     <article class="post-body">
-      <h1 id="post-title">読み込み中...</h1>
-      <div id="post-content">記事を抽出しているよ...</div>
+      <h1 id="post-title">loading...</h1>
+      <div id="post-content">loading...</div>
     </article>
   </div>
 </main>
@@ -50,7 +50,7 @@
       document.getElementById('post-title').textContent = entry.title.$t;
       document.getElementById('post-content').innerHTML = entry.content.$t;
     } else {
-      document.getElementById('post-content').innerHTML = '<p>記事が見つからないな。</p>';
+      document.getElementById('post-content').innerHTML = '<p>none</p>';
     }
   }
 </script>

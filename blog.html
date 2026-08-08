@@ -136,6 +136,17 @@
         margin-top: 40px;
       }
     }
+    /* 中間幅（800px〜950px）のとき、アーカイブを少し細くして耐える */
+    @media (min-width: 800px) and (max-width: 950px) {
+      .blog-layout {
+        max-width: 750px; /* 全体を少し広げる */
+        padding: 0 20px;
+      }
+      .archive-sidebar {
+        width: 120px; /* アーカイブを少し細くする */
+        left: calc(100% + 10px); /* 隙間も少し詰める */
+      }
+    }
   </style>
 </head>
 
