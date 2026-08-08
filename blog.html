@@ -12,88 +12,59 @@
   <link rel="stylesheet" href="stylesheet.css">
   
   <style>
+    /* 文字の細さ調整 */
     .words-text {
-  text-align: center;
-  font-size: 0.95rem;
-  color: #808080;
-  line-height: 2.1;
-  margin-bottom: 70px;
-  font-family: 'Zen Maru Gothic', sans-serif;
-}
+      text-align: center;
+      font-size: 0.95rem;
+      color: #808080;
+      line-height: 2.1;
+      margin-bottom: 70px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 500; /* 細くする */
+    }
+    
+    .post-title {
+      font-size: 1.1rem;
+      font-weight: 500; /* 細くする */
+      margin-bottom: 8px;
+    }
+
+    /* レイアウト：アーカイブを右側に */
     .blog-container {
       max-width: 800px;
       margin: 0 auto;
       padding: 50px 20px;
       display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 40px;
+      grid-template-columns: 1fr 200px; /* リストを左、アーカイブを右へ */
+      gap: 60px; /* 空白を広げる */
       text-align: left;
     }
-    
+
+    /* アーカイブボックスの角張ったデザイン */
     .archive-sidebar {
       text-align: left;
     }
     .archive-title {
-      font-size: 0.85rem;
-      font-family: 'Zen Maru Gothic', sans-serif;
-      margin-bottom: 15px;
-      font-family: 'CineCaption', sans-serif;
+      font-size: 0.8rem;
+      font-family: sans-serif; /* クラシックなゴシックへ */
+      margin-bottom: 10px;
     }
-    
-    /* プルダウンのスタイル（文字：黒、背景：グレー） */
     .archive-select {
       width: 100%;
-      padding: 8px 10px;
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 0.85rem;
-      color: #000000;
-      background-color: #e0e0e0;
-      border: 1px solid #b0b0b0;
-      border-radius: 4px;
+      padding: 8px;
+      font-family: sans-serif;
+      font-size: 0.8rem;
+      color: #000;
+      background-color: #fff; /* 背景を白に */
+      border: 1px solid #000;
+      border-radius: 0; /* 角を丸めない */
       cursor: pointer;
     }
     
-    .post-list-area {
-      text-align: left;
-    }
-    .post-item {
-      margin-bottom: 25px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #eee;
-    }
-    .post-title {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .post-title a {
-      color: #000000;
-      text-decoration: none;
-    }
-    .post-title a:hover {
-      text-decoration: underline;
-    }
-    .post-date {
-      font-size: 0.85rem;
-      color: #888888;
-    }
-    
-    .pagination {
-      margin-top: 40px;
-      text-align: center;
-      font-family: 'CineCaption', sans-serif;
-      font-size: 1rem;
-    }
-    .pagination a {
-      color: #333;
-      text-decoration: none;
-      margin: 0 10px;
-    }
+    .post-date { font-size: 0.8rem; color: #888; }
     
     @media (max-width: 767px) {
-      .blog-container {
-        grid-template-columns: 1fr;
-      }
+      .blog-container { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -178,7 +149,7 @@
     generateArchiveMenu(allPosts);
   }
 
- // ページング管理用変数
+  // ページング管理用変数
   let currentPage = 1;
   const postsPerPage = 10;
 
@@ -190,10 +161,10 @@
     const start = (page - 1) * postsPerPage;
     const end = start + postsPerPage;
     const paginatedItems = posts.slice(start, end);
+    const totalPages = Math.ceil(posts.length / postsPerPage);
 
     paginatedItems.forEach(entry => {
       let title = entry.title.$t;
-      // 記事詳細ページへリンク（URLパラメータを使用）
       let link = `post.html?url=${encodeURIComponent(entry.link.find(l => l.rel === 'alternate').href)}`;
       let date = new Date(entry.published.$t).toLocaleDateString();
 
@@ -206,10 +177,23 @@
       postsContainer.appendChild(postDiv);
     });
 
-    // ページ送りボタンの表示制御
-    document.getElementById('prev-page').style.display = page > 1 ? 'inline' : 'none';
-    document.getElementById('next-page').style.display = end < posts.length ? 'inline' : 'none';
-    document.getElementById('page-separator').style.display = (page > 1 || end < posts.length) ? 'inline' : 'none';
+    // ページ送りボタン（next | top | prev）の表示制御と動作
+    const nextLink = document.getElementById('next-link');
+    const topLink = document.getElementById('top-link');
+    const prevLink = document.getElementById('prev-link');
+
+    if (nextLink && topLink && prevLink) {
+      // next: より新しい記事へ (page 1 より大きいとき表示)
+      nextLink.style.display = page > 1 ? 'inline' : 'none';
+      nextLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, page - 1); };
+
+      // top: 一覧の最初へ
+      topLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, 1); };
+
+      // prev: より古い記事へ (最後のページじゃないとき表示)
+      prevLink.style.display = page < totalPages ? 'inline' : 'none';
+      prevLink.onclick = (e) => { e.preventDefault(); displayPosts(posts, page + 1); };
+    }
   }
 
   // アーカイブのプルダウンメニューを生成する関数
