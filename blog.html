@@ -70,6 +70,13 @@
       text-align: left;
     }
 
+    /* 記事リストとページネーションの間の細い黒ライン */
+    .blog-divider {
+      border: none;
+      border-top: 1px solid #000000;
+      margin: 60px 0 20px 0; /* 上の余白を60pxに増やし、下の余白を20pxに詰める */
+    }
+
     /* 記事リスト単体のエリア */
     .post-list-area {
       width: 100%;
@@ -101,7 +108,7 @@
 
     /* ページネーション（next | top | prev） */
     .pagination {
-      margin-top: 15%;
+      margin-top: 20px; /* px指定ですっきり詰める */
       text-align: center;
       font-family: 'CineCaption', sans-serif;
       font-size: 1rem;
