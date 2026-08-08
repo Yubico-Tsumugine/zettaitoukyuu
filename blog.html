@@ -226,7 +226,7 @@
       nextLink.style.display = page > 1 ? 'inline' : 'none';
       nextLink.onclick = (e) => { e.preventDefault(); displayPosts(currentPosts, page - 1); };
 
-      topLink.style.display = totalPages > 1 ? 'inline' : 'none';
+      topLink.style.display = 'inline';
       topLink.onclick = (e) => { e.preventDefault(); displayPosts(currentPosts, 1); };
 
       prevLink.style.display = page < totalPages ? 'inline' : 'none';
@@ -245,14 +245,17 @@
       const key = `${year}年${month}月`;
       
       if (!archives[key]) {
-        archives[key] = { year, month };
+        archives[key] = 0;
       }
+      archives[key]++;
     });
+
+    archiveSelect.innerHTML = `<option value="">すべての記事 (${posts.length})</option>`;
 
     Object.keys(archives).forEach(key => {
       const option = document.createElement('option');
       option.value = key;
-      option.textContent = key;
+      option.textContent = `${key} (${archives[key]})`;
       archiveSelect.appendChild(option);
     });
 
