@@ -2,36 +2,49 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>記事詳細 - 絶対等級</title>
   <link rel="stylesheet" href="stylesheet.css">
+  <!-- blog.htmlと同じCSS構造をここに適用する -->
   <style>
-    .post-container { max-width: 800px; margin: 50px auto; padding: 20px; text-align: left; }
-    .back-link { margin-bottom: 20px; display: block; }
+    /* 記事表示専用のスタイル */
+    .blog-container { max-width: 800px; margin: 0 auto; padding: 50px 20px; display: grid; grid-template-columns: 200px 1fr; gap: 40px; }
+    .post-body { text-align: left; line-height: 1.8; }
+    @media (max-width: 767px) { .blog-container { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <!-- ヘッダーはblog.htmlと共通 -->
-  <main class="post-container">
-    <a href="blog.html" class="back-link">← ブログ一覧へ戻る</a>
-    <div id="post-content">記事を読み込んでいるよ...</div>
-  </main>
-  <!-- フッダーはblog.htmlと共通 -->
 
-  <script>
-    // URLパラメータを取得する確実な方法
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const postUrl = urlParams.get('url');
+<!-- ヘッダー (blog.htmlと同じものを配置) -->
+<header class="site-header">...</header>
 
-    console.log("読み込もうとしているURL:", postUrl); // デバッグ用：ブラウザのコンソールで確認できる
+<main>
+  <div class="blog-container">
+    <aside class="archive-sidebar">
+      <h2 class="archive-title">過去の詩</h2>
+      <div id="blogger-archive"><select id="archive-dropdown" class="archive-select">...</select></div>
+    </aside>
+    
+    <article class="post-body">
+      <h1 id="post-title">読み込み中...</h1>
+      <div id="post-content">記事を読み込んでいるよ...</div>
+      <div id="post-nav" style="margin-top:50px;">
+        <a href="blog.html">← ブログ一覧へ戻る</a>
+      </div>
+    </article>
+  </div>
+</main>
 
-    if (postUrl) {
-      const container = document.getElementById('post-content');
-      // iframeを生成して読み込む
-      container.innerHTML = `<iframe src="${postUrl}" style="width:100%; height:80vh; border:none;"></iframe>`;
-    } else {
-      document.getElementById('post-content').innerHTML = '<p>記事のリンクが正しく取得できなかったな。</p>';
-    }
-  </script>
+<!-- フッダー (blog.htmlと同じものを配置) -->
+<footer class="footer-container">...</footer>
+
+<script>
+  // URLから記事URLを取得し、BloggerのAPIを再度叩いてデータを取得する
+  const postUrl = new URLSearchParams(window.location.search).get('url');
+  
+  // APIで取得したデータから対象の記事を探す関数が必要になる
+  // (続きは↓のJSONP連携で)
+</script>
+
 </body>
 </html>
