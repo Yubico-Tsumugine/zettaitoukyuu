@@ -74,13 +74,19 @@
       text-align: left;
     }
 
-    /* 記事リストとページネーションの間のライン */
+    /* ラインとページネーションの親エリア */
+    .footer-pagination-area {
+      max-width: 850px; /* ここを blog-layout の max-width と同じにする */
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 20px; /* 画面端に張り付かないように余白を入れる */
+    }
+
     .blog-divider {
-      grid-column: 1 / -1; /* グリッドの左端から右端までをカバーする */
       border: none;
       border-top: 1px solid #000000;
       margin: 60px 0 20px 0;
-      width: 100%; /* コンテナいっぱいに広げる */
+      width: 100%; /* 親の幅いっぱいに広がる */
     }
 
     /* 記事リスト単体のエリア */
@@ -184,15 +190,8 @@
       <!-- 記事リスト単体のコンテナ（ここを画面中央にする） -->
       <div class="post-list-area">
         <div id="blogger-posts">loading...</div>
-
-        <hr class="blog-divider">
-        
-        <div class="pagination">
-          <a href="#" id="next-link">next</a>
-          <a href="#" id="top-link">top</a>
-          <a href="#" id="prev-link">prev</a>
-        </div>
-      </div>
+</div>
+       
 
       <!-- アーカイブボックス（右側に配置） -->
       <aside class="archive-sidebar">
@@ -203,9 +202,17 @@
           </select>
         </div>
       </aside>
+</div><!-- blog-layout をここで閉じる -->
 
+ <!-- ラインとページネーションを完全に外側に独立させる -->
+    <div class="footer-pagination-area">
+      <hr class="blog-divider">
+      <div class="pagination">
+        <a href="#" id="next-link">next</a>
+        <a href="#" id="top-link">top</a>
+        <a href="#" id="prev-link">prev</a>
+      </div>
     </div>
-  </div>
 </main>
 
 <footer class="footer-container">
